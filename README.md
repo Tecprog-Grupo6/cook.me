@@ -8,6 +8,6 @@ Cook.me is a social media and social networking website focused on connecting pe
 
 ## Dependencies
 
-* **Ruby:** 2.4.0
-* **Ruby on Rails:** 5.0.2
+* **Ruby Version:** 2.4.0
+* **Rails Version:** 5.0.2
 * **Ruby Version Manager:** 1.29.1
