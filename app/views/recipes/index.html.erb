@@ -1,0 +1,18 @@
+<h1>Listing recipes</h1>
+
+<%= link_to 'New recipes', new_recipe_path %>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Text</th>
+  </tr>
+ 
+  <% @recipes.each do |recipe| %>
+    <tr>
+      <td><%= recipe.title %></td>
+      <td><%= recipe.text %></td>
+      <td><%= link_to 'Show', recipe_path(recipe) %></td>
+    </tr>
+  <% end %>
+</table>
