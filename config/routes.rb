@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'users', to:'user#index', as:'users'
+  get 'users/:id', to: 'user#show'
+  
   devise_for :users
   get '/' => 'home#index'
   root to: "home#index"
