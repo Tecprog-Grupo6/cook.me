@@ -5,6 +5,8 @@ Rails.application.routes.draw do
 
   get '/' => 'home#index'
   root to: "home#index"
+  get '/buscar' => 'search#index'
+  post '/buscar' => 'search#show_results'
 
   as :user do
     get '/login', to: 'users/sessions#new'
