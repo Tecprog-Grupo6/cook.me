@@ -1,4 +1,15 @@
 language: ruby
 
+script:
+  - bundle exec rake db:drop
+  - bundle exec rake db:create
+  - bundle exec rake db:migrate
+
 rvm:
   - 2.4.0
+
+notifications:
+  email:
+    recipients:
+      - mateusmorais@hotmail.com.br
+      - breno-mariz@outlook.com
