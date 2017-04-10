@@ -1,30 +1,38 @@
 <style>
-  .nav-pills > li > a {
-    border-radius: 4px 4px 0 0 ;
-  }
+.nav-pills > li > a {
+  border-radius: 4px 4px 0 0 ;
+}
 
-  .tab-content {
-    color : white;
-    background-color: #ff8533;
-    padding : 5px 15px;
-    border-radius: 0 0 8px 8px ;
-  }
+.tab-content {
+  color : white;
+  background-color: #ff531a;
+  padding : 60px 15px;
+  border-radius: 0 0 8px 8px ;
+}
 
-  .nav-pills > li.active > a, .nav-pills > li.active > a:focus {
-    color: black;
-    background-color: #ff8533;
-  }
-  .center {
-    text-align: center;
-  }
+.nav-pills > li.active > a, .nav-pills > li.active > a:focus {
+  color: black;
+  background-color: #ff531a;
+}
+.center {
+  text-align: center;
+}
+.well {
+  color : black;
+  background-color: white;
+  padding : 15px 15px;
+  border-radius: 8px 8px 8px 8px ;
+  border-style: none;
+}
 
-  body {
-    background-color: #f7f7f7;
-  }
+body {
+  background-color: #e6e6e6;
+}
 </style>
 
 <div class="container"><h2>Busca</h2></div>
-<div class="container">
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
   <ul  class="nav nav-pills">
 		<li class="active">
       <a  href="#recipes" data-toggle="tab">Receitas</a>
@@ -47,8 +55,30 @@
       <% if @query_users != [] %>
         <% if @query_users != nil %>
           <% @query_users.each do |user| %>
-            <h4>Nome: <%= user.name %> <%= user.last_name %></h4>
-            <h4>E-mail: <%= user.email %></h4>
+            <div class="row">
+              <div class="col-md-10 col-md-offset-1">
+                <div class="well well-sm">
+                  <div class="row">
+                    <div class="col-sm-6 col-md-4">
+                      <img src="http://www.criarfacebook.com/wp-content/uploads/2016/08/perfil-facebook-400x250.jpg" class="img-rounded img-responsive" alt="HTML5 Icon" style="width:75%;height:75%;"/>
+                    </div>
+                    <div class="col-sm-6 col-md-8">
+                      <h4>Nome: <%= user.first_name %> <%= user.last_name %></h4>
+                      <i class="glyphicon glyphicon-star"></i>
+                      <i class="glyphicon glyphicon-star"></i>
+                      <i class="glyphicon glyphicon-star"></i>
+                      <i class="glyphicon glyphicon-star-empty"></i>
+                      <i class="glyphicon glyphicon-star-empty"></i>
+                      <br>
+                      <i class="glyphicon glyphicon-date"></i>DD, Mês, AAAA
+                      <br>
+                      <i class="glyphicon glyphicon-envelope"></i>  E-mail: <%= user.email %>
+                      <br>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           <% end %>
         <% else %>
           <h3>Pesquise por um usuário <b> ;)</b> </h3>
@@ -59,4 +89,5 @@
       <br>
 		</div>
 	</div>
+</div>
 </div>
