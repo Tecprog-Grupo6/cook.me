@@ -2,9 +2,10 @@ Rails.application.routes.draw do
 
   devise_for :users, :controllers => {registrations: 'users/registrations'}
   resources :users, only: [ :show, :edit, :update, ]
+  resources :recipes
 
-  get '/' => 'home#index'
   root to: "home#index"
+  get '/' => 'home#index'
   get '/buscar' => 'search#index'
   post '/buscar' => 'search#show_results'
 
