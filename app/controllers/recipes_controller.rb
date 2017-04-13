@@ -1,23 +1,28 @@
 class RecipesController < ApplicationController
+	# show all recipes
 	def index
 		@recipes = Recipe.all		
 	end
 
-	def show
+	# show an specific recipe
+	def show_recipe
 		@recipe = Recipe.find(params[:id])
 	end
 
-	def new
+	# create a new recipe
+	def new_recipe
 		@recipe = Recipe.new
 	end
 
-	def edit
+	# edit a recipe
+	def edit_recipe
 		@recipe = Recipe.find(params[:id])
 	end
 
-	def create
+	# create a recipe
+	def create_recipe
 		@recipe = Recipe.new(params[:recipe].permit(:title,:text))
-
+		#method to save a new recipe
 		if @recipe.save
 			redirect_to @recipe
 		else
@@ -25,6 +30,7 @@ class RecipesController < ApplicationController
 		end
 	end
 
+	# method to update a specific recipe
 	def update
 		@recipe = Recipe.find(params[:id])
 		
@@ -35,6 +41,7 @@ class RecipesController < ApplicationController
 		end
 	end
 
+	# method to exclude a recipe
 	def destroy
 		@recipe = Recipe.find(params[:id])
 		@recipe.destroy
@@ -42,6 +49,7 @@ class RecipesController < ApplicationController
 		redirect_to @recipe
 	end
 
+	# create the parameters to recipes list
 	private
 	def recipe_params
 		params.require(:recipe).permit(:title, :text)		
