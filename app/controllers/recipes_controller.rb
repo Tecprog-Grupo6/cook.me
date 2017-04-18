@@ -5,22 +5,22 @@ class RecipesController < ApplicationController
 	end
 
 	# show an specific recipe
-	def show_recipe
+	def show
 		@recipe = Recipe.find(params[:id])
 	end
 
 	# create a new recipe
-	def new_recipe
+	def new
 		@recipe = Recipe.new
 	end
 
 	# edit a recipe
-	def edit_recipe
+	def edit
 		@recipe = Recipe.find(params[:id])
 	end
 
 	# create a recipe
-	def create_recipe
+	def create
 		@recipe = Recipe.new(params[:recipe].permit(:title,:text))
 		#method to save a new recipe
 		if @recipe.save
