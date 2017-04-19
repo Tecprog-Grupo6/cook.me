@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   get '/' => 'home#index'
   get '/buscar' => 'search#index'
   post '/buscar' => 'search#show_results'
+  get '/user/:username', to: 'perfil#show'
 
   as :user do
     get '/login', to: 'users/sessions#new'
