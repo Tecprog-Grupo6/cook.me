@@ -5,7 +5,7 @@ class PerfilController < ApplicationController
     if @user != nil
       result = render template: "perfil/show.html.erb"
     else
-      # Profile not found page
+      result = render template: "perfil/perfil_not_found.html.erb"
     end
 
     return result
