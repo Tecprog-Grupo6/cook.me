@@ -1,3 +1,4 @@
 <h1>Perfil</h1>
+<p><%= image_tag @user.avatar.url(:medium) %></p>
 <p>Nome completo: <%= @user.first_name %> <%= @user.last_name %></p>
 <p>E-mail: <%= @user.email %></p>

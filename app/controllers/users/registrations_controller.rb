@@ -13,7 +13,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       params[:user][:last_name], :email => params[:user][:email],:password =>
       params[:user][:password], :password_confirmation =>
       params[:user][:password_confirmation], :username =>
-      params[:user][:username])
+      params[:user][:username], :avatar => params[:user][:avatar])
 
     if @user.save
       sign_in(:user, @user)
