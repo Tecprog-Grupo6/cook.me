@@ -67,15 +67,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
         render template: "users/registrations/edit.html.erb"
       end
 
-
-
-
-      #redirect_to "user/#{@user.username}"
-
-      #sign_in(:user, @user)
-      #render 'home/index'
     else
-
+       flash[:notice] = "A senha digitada está incorreta!"
+       redirect_to "/perfil/editar"
     end
 
   end
