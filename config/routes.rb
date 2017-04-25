@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   get '/buscar' => 'search#index'
   post '/buscar' => 'search#show_results'
   get '/user/:username', to: 'perfil#show'
+  post '/user/:username/followed_by/:current_user_username', to: 'perfil#follow'
+  post '/user/:username/unfollowed_by/:current_user_username', to: 'perfil#unfollow'
 
   as :user do
     get '/login', to: 'users/sessions#new'
