@@ -21,14 +21,15 @@
   </head>
 
   <body>
-
+    <style>
+      body {
+        background: #e6ffff;
+      }
+    </style>
     <!-- Header -->
      <div class="header">
        <%= render "/layouts/header" %>
      </div>
-
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
 
     <%= yield %>
 

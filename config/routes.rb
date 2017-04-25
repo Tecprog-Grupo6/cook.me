@@ -25,7 +25,7 @@ Rails.application.routes.draw do
     get '/perfil/criar', to: 'users/registrations#new'
     get '/perfil/editar', to: 'users/registrations#edit'
     patch '/perfil/atualizar', to: 'users/registrations#update'
-    put '/perfil/atualizar', to: 'users/registrations#update'
+    post '/perfil/atualizar', to: 'users/registrations#update'
     delete '/perfil/excluir', to: 'users/registrations#destroy'
     post '/perfil/criar', to: 'users/registrations#create'
   end

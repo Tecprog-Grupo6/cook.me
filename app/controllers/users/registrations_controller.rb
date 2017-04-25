@@ -13,7 +13,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       params[:user][:last_name], :email => params[:user][:email],:password =>
       params[:user][:password], :password_confirmation =>
       params[:user][:password_confirmation], :username =>
-      params[:user][:username])
+      params[:user][:username], :avatar => params[:user][:avatar])
 
     if @user.save
       sign_in(:user, @user)
@@ -30,9 +30,49 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # PUT /resource
-  # def update
-  #   super
-  # end
+  def update
+
+    @user_edit = current_user
+
+    if @user_edit.valid_password?(params[:user][:current_password])
+
+      @user_edit.first_name = params[:user][:first_name]
+      @user_edit.last_name = params[:user][:last_name]
+      @user_edit.email = params[:user][:email]
+
+      if params[:user][:password].empty? || params[:user][:password_confirmation].empty?
+        @user_edit.password = params[:user][:current_password]
+        @user_edit.password_confirmation = params[:user][:current_password]
+      else
+        @user_edit.password = params[:user][:password]
+        @user_edit.password_confirmation = params[:user][:password_confirmation]
+      end
+
+      if params[:user][:avatar] != nil
+        @user_edit.avatar = params[:user][:avatar]
+      else
+        # Do nothing
+      end
+
+      if @user_edit.save
+        sign_out @user_edit
+        sign_in @user_edit
+
+        # Set @user to database state to render profile
+        @user = User.find_by(username: current_user.username)
+        render template: "perfil/show.html.erb"
+      else
+        #Set @user to get error messages from @user_edit
+        @user = @user_edit
+        render template: "users/registrations/edit.html.erb"
+      end
+
+    else
+       flash[:notice] = "A senha digitada está incorreta!"
+       redirect_to "/perfil/editar"
+    end
+
+  end
 
   # DELETE /resource
   # def destroy
