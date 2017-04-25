@@ -49,6 +49,45 @@ Licensed under MIT
 		<div class="col-md-9">
       <div class="profile-statistics" id="estatisticas">
         <div class="title-session">Estatísticas</div>
+        <div class="row">
+          <div class="subtitle-session">Seguidores (total: <%= @user.followers.count %>)</div><br>
+          <% if !@user.followers.empty? %>
+            <% @user.followers.each do |follower| %>
+              <div class="col-md-2">
+                <a href="/user/<%= follower.username %>">
+                  <center>
+                    <%= image_tag(follower.avatar.url(:thumb)) %><br>
+                    <%= follower.first_name %> <%= follower.last_name %>
+                  </center>
+                </a>
+              </div>
+            <% end %>
+          <% else %>
+            <div class="col-md-8">
+              <p>Este usuário ainda não possui seguidores!</p>
+            </div>
+          <% end %>
+        </div>
+        <br>
+        <div class="row">
+          <div class="subtitle-session">Seguindo (total: <%= @user.following.count %>)</div><br>
+          <% if !@user.following.empty? %>
+            <% @user.following.each do |followed| %>
+              <div class="col-md-2">
+                <a href="/user/<%= followed.username %>">
+                  <center>
+                    <%= image_tag(followed.avatar.url(:thumb)) %><br>
+                    <%= followed.first_name %> <%= followed.last_name %>
+                  </center>
+                </a>
+              </div>
+            <% end %>
+          <% else %>
+            <div class="col-md-8">
+              <p>Este usuário ainda não segue ninguém!</p>
+            </div>
+          <% end %>
+        </div>
       </div>
       <br>
       <div class="profile-cookbook" id="cookbook">
