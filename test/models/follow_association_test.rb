@@ -1,10 +1,10 @@
 require 'test_helper'
 
 class FollowAssociationTest < ActiveSupport::TestCase
-  
+
   def setup
     @follow_association = FollowAssociation.new(follower_id: users(:one).id,
-                                     followed_id: users(:two).id)
+                                                followed_id: users(:two).id)
   end
 
   test "should be valid" do

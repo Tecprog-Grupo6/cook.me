@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
-  
+
   test "should follow and unfollow a user" do
     user_one = users(:one)
     user_two  = users(:two)
