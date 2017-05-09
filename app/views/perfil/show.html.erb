@@ -24,7 +24,7 @@ Licensed under MIT
 				</div>
 				<!-- END SIDEBAR USER TITLE -->
 				<!-- SIDEBAR BUTTONS -->
-        <% if @current_user != @profile_user %>
+        <% if @current_user != nil && @current_user != @profile_user %>
   				<div class="profile-userbuttons">
             <% if !@current_user.following?(@profile_user) %>
               <form action="/user/<%= @profile_user.username %>/followed_by/<%= @current_user.username %>" method="post">
