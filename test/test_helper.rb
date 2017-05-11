@@ -1,23 +1,28 @@
 require 'simplecov'
 SimpleCov.start do
+  # Filter not significant directories and files
   add_filter "/test/"
   add_filter '/app/assets/'
   add_filter '/app/channels/'
   add_filter "/app/helpers/"
   add_filter '/app/jobs/'
   add_filter '/app/mailers/'
+  add_filter 'app/models/application_record.rb'
+  # Devise modules not used
   add_filter 'app/controllers/users/confirmations_controller.rb'
   add_filter 'app/controllers/users/omniauth_callbacks_controller.rb'
   add_filter 'app/controllers/users/passwords_controller.rb'
   add_filter 'app/controllers/users/unlocks_controller.rb'
-  add_filter 'app/controllers/recipes_controller.rb'
-  add_filter 'app/models/application_record.rb'
-  add_filter 'app/models/recipe.rb'
+  # Devise user model isn't being tracked by simplecov
   add_filter 'app/models/user.rb'
+  # Remove these filters below after fix recipes
+  add_filter 'app/controllers/recipes_controller.rb'
+  add_filter 'app/models/recipe.rb'
+  # Divide coverage in groups
   add_group "Controllers", "app/controllers"
   add_group "Models", "app/models"
-  #track_files "{app,lib}/**/*.rb"
-  track_files "app/**/*.rb"
+  # Track all not filtered files
+  track_files "app/**/*.rb" # To add lib: track_files "{app,lib}/**/*.rb"
 end
 SimpleCov.minimum_coverage 80
 
