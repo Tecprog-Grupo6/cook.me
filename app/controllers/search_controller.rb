@@ -1,3 +1,9 @@
+######################################################################
+# File name: search_controller.rb
+# Class name: SearchController
+# Description: Controller used to communicate with the view header
+######################################################################
+
 class SearchController < ApplicationController
   def index
   end

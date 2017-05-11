@@ -1,7 +1,13 @@
+######################################################################
+# File name: recipes_controller.rb
+# Class name: RecipesController
+# Description: Controller used to communicate with the view /recipes
+######################################################################
+
 class RecipesController < ApplicationController
 	# show all recipes
 	def index
-		@recipes = Recipe.all		
+		@recipes = Recipe.all
 	end
 
 	# show an specific recipe
@@ -33,7 +39,7 @@ class RecipesController < ApplicationController
 	# method to update a specific recipe
 	def update
 		@recipe = Recipe.find(params[:id])
-		
+
 		if @recipe.update(recipe_params)
 			redirect_to @recipe
 		else
@@ -52,6 +58,6 @@ class RecipesController < ApplicationController
 	# create the parameters to recipes list
 	private
 	def recipe_params
-		params.require(:recipe).permit(:title, :text)		
+		params.require(:recipe).permit(:title, :text)
 	end
 end

@@ -1,3 +1,9 @@
+######################################################################
+# File name: perfil_controller.rb
+# Class name: PerfilController
+# Description: Controller used to communicate with the view perfil/show
+######################################################################
+
 class PerfilController < ApplicationController
   # Description: Shoe the profile of the current user
   # Parameters: none.
