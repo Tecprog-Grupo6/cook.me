@@ -1,7 +1,7 @@
 class SearchController < ApplicationController
   def index
   end
-
+  # Description: show the results of any search
   def show_results
     @query = params[:query]
 
