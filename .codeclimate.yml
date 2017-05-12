@@ -5,8 +5,11 @@ engines:
     enabled: true
     config:
       languages:
-        - ruby
+        ruby:
+          mass_threshold: 32
 ratings:
   paths:
     - app/**
     - "**.rb"
+exclude_paths:
+- test/**
