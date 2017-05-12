@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+
   get 'perfil/show'
 
   devise_for :users, :controllers => {registrations: 'users/registrations'}
@@ -8,6 +9,9 @@ Rails.application.routes.draw do
 
   root to: "home#index"
   get '/' => 'home#index'
+  get '/receita/visualizar/:recipe_id' => 'recipe#show'
+  get '/receita/criar' => 'recipe#new'
+  post '/receita/' => 'recipe#save'
   get '/buscar' => 'search#index'
   post '/buscar' => 'search#show_results'
   get '/user/:username', to: 'perfil#show'
