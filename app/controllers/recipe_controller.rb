@@ -1,5 +1,7 @@
 class RecipeController < ApplicationController
 
+  skip_before_action :verify_authenticity_token, only: [:save]
+
   def show
 
   end
@@ -10,8 +12,7 @@ class RecipeController < ApplicationController
   end
 
   def save
-    @recipe = Recipe.new(:title => params[:name], :text => params[:preparation])
-
+    @recipe = Recipe.new(:title => params[:name], :text => params[:preparation], :served_people => params[:people], :prepare_time => params[:time])
       if @recipe.save
         redirect_to "/receita/visualizar/#{@recipe.id}"
       else
