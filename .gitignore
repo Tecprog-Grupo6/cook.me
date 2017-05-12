@@ -19,3 +19,12 @@
 
 # Ignore Byebug command history file.
 .byebug_history
+
+# Ignore schema.rb
+/db/schema.rb
+
+# Ignore avatars folder
+/public/system
+
+# Ignore test coverage folder
+/coverage

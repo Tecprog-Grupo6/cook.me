@@ -1,0 +1,14 @@
+engines:
+  rubocop:
+    enabled: true
+  duplication:
+    enabled: true
+    config:
+      languages:
+        - ruby
+ratings:
+  paths:
+    - app/**
+    - "**.rb"
+exclude_paths:
+- "tests/"

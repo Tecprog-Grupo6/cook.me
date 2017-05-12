@@ -1,0 +1,112 @@
+<!--
+User Profile Sidebar by @keenthemes
+A component of Metronic Theme - #1 Selling Bootstrap 3 Admin Theme in Themeforest: http://j.mp/metronictheme
+Licensed under MIT
+-->
+
+<div class="container">
+    <div class="row profile">
+		<div class="col-md-3">
+			<div class="profile-sidebar">
+				<!-- SIDEBAR USERPIC -->
+				<div class="profile-userpic">
+					<%= image_tag(@profile_user.avatar.url, class:"img-responsive", alt:"") %>
+				</div>
+				<!-- END SIDEBAR USERPIC -->
+				<!-- SIDEBAR USER TITLE -->
+				<div class="profile-usertitle">
+					<div class="profile-usertitle-name">
+						<%= @profile_user.first_name %> <%= @profile_user.last_name %>
+					</div>
+					<div class="profile-usertitle-job">
+						Mestre-cuca
+					</div>
+				</div>
+				<!-- END SIDEBAR USER TITLE -->
+				<!-- SIDEBAR BUTTONS -->
+        <% if @current_user != nil && @current_user != @profile_user %>
+  				<div class="profile-userbuttons">
+            <% if !@current_user.following?(@profile_user) %>
+              <form action="/user/<%= @profile_user.username %>/followed_by/<%= @current_user.username %>" method="post">
+                <button type="submit" class="btn btn-success btn-sm">Seguir</button>
+              </form>
+            <% else %>
+              <form action="/user/<%= @profile_user.username %>/unfollowed_by/<%= @current_user.username %>" method="post">
+                <button type="submit" class="btn btn-danger btn-sm">Deixar de Seguir</button>
+              </form>
+            <% end %>
+  				</div>
+        <% else %>
+          <!-- Do nothig -->
+        <% end %>
+				<!-- END SIDEBAR BUTTONS -->
+				<!-- SIDEBAR MENU -->
+				<div class="profile-usermenu">
+					<ul class="nav">
+						<li>
+							<a href="#estatisticas">
+							<i class="glyphicon glyphicon-stats"></i>
+							Estatísticas </a>
+						</li>
+						<li>
+							<a href="#cookbook">
+							<i class="glyphicon glyphicon-book"></i>
+							Cookbook </a>
+						</li>
+					</ul>
+				</div>
+				<!-- END MENU -->
+			</div>
+		</div>
+		<div class="col-md-9">
+      <div class="profile-statistics" id="estatisticas">
+        <div class="title-session">Estatísticas</div>
+        <div class="row">
+          <div class="subtitle-session">Seguidores (total: <%= @profile_user.followers.count %>)</div><br>
+          <% if !@profile_user.followers.empty? %>
+            <% @profile_user.followers.each do |follower| %>
+              <div class="col-md-2">
+                <a href="/user/<%= follower.username %>">
+                  <center>
+                    <%= image_tag(follower.avatar.url(:thumb)) %><br>
+                    <%= follower.first_name %> <%= follower.last_name %>
+                  </center>
+                </a>
+              </div>
+            <% end %>
+          <% else %>
+            <div class="col-md-8">
+              <p>Este usuário ainda não possui seguidores!</p>
+            </div>
+          <% end %>
+        </div>
+        <br>
+        <div class="row">
+          <div class="subtitle-session">Seguindo (total: <%= @profile_user.following.count %>)</div><br>
+          <% if !@profile_user.following.empty? %>
+            <% @profile_user.following.each do |followed| %>
+              <div class="col-md-2">
+                <a href="/user/<%= followed.username %>">
+                  <center>
+                    <%= image_tag(followed.avatar.url(:thumb)) %><br>
+                    <%= followed.first_name %> <%= followed.last_name %>
+                  </center>
+                </a>
+              </div>
+            <% end %>
+          <% else %>
+            <div class="col-md-8">
+              <p>Este usuário ainda não segue ninguém!</p>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      <br>
+      <div class="profile-cookbook" id="cookbook">
+        <div class="title-session">Cookbook</div>
+      </div>
+		</div>
+	</div>
+</div>
+<br>
+<br>

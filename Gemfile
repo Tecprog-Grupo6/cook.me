@@ -37,6 +37,17 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+#Use Devise for authentication
+gem 'devise'
+
+gem "paperclip", git: "git://github.com/thoughtbot/paperclip.git"
+
+group :test do
+  gem 'minitest-reporters'
+  gem 'simplecov', :require => false, :group => :test
+  gem "codeclimate-test-reporter", "~> 1.0.0"
+end
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
