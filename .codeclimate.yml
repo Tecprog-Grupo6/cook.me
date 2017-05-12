@@ -10,3 +10,5 @@ ratings:
   paths:
     - app/**
     - "**.rb"
+exclude_paths:
+- "tests/"

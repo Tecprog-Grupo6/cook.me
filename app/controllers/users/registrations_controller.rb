@@ -59,7 +59,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
         sign_in @user_edit
 
         # Set @user to database state to render profile
-        @user = User.find_by(username: current_user.username)
+        @profile_user = User.find_by(username: current_user.username)
         render template: "perfil/show.html.erb"
       else
         #Set @user to get error messages from @user_edit
