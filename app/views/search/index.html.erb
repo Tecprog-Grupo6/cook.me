@@ -8,6 +8,10 @@
   text-align: center;
 }
 
+.info-content{
+  text-align: left;
+}
+
 .nav-pills > li > a:hover {
   color: black;
 }
@@ -20,6 +24,10 @@
 
 .yellow{
   color:#fcc500;
+}
+
+.text-position{
+  position: absolute;
 }
 
 .tab-content {
@@ -36,6 +44,12 @@
 
 .center {
   text-align: center;
+}
+
+.profile-img{
+  height: : 200px;
+  width: 200px;
+  overflow: hidden;
 }
 
 .well {
@@ -61,9 +75,64 @@
   	</ul>
   	<div class="tab-content clearfix">
   	  <div class="tab-pane center active" id="recipes">
-        <h3>Receitas</h3>
-        <p>Cadê as receitas?</p>
+        <% if @query_recipe != [] %>
+          <% if @query_recipe != nil %>
+            <% @query_recipe.each do |recipe| %>
+              <div class="row">
+                <div class="col-md-10 col-md-offset-1">
+                  <div class="well well-sm">
+                    <div class="row">
+                      <div class="col-md-10 col-md-offset-1">
+                        <h3>Nome: <a href="/receita/visualizar/<%= recipe.id =%>"><%= recipe[:title] =%></a></h3>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-4">
+                        <img src="http://runawayapricot.com/wp-content/uploads/2014/09/placeholder.jpg"
+                          class="img-rounded img-responsive" alt="HTML5 Icon" style="width:75%;height:75%;"/>
+                      </div>
+                      <div class="col-md-5 info-content">
+                          <br>
+                          <h4>Serve <%= recipe.served_people =%> pessoas</h4>
+                          <br>
+                          <h4>Tempo de preparo <%= recipe.served_people =%> minutos</h4>
+                          <br>
+                          <div class="row">
+                            <div class="col-md-6 col-md-offset-3">
+                              <div class="yellow">
+                                <i class="glyphicon glyphicon-star"></i>
+                                <i class="glyphicon glyphicon-star"></i>
+                                <i class="glyphicon glyphicon-star"></i>
+                                <i class="glyphicon glyphicon-star-empty"></i>
+                                <i class="glyphicon glyphicon-star-empty"></i>
+                              </div>
+                              <% if(recipe.created_at.day > 10) %>
+                                <%= recipe.created_at.day %>
+                              <% else %>
+                                0<%= recipe.created_at.day %>
+                              <% end %>/<% if(recipe.created_at.month > 10) %>
+                                <%= recipe.created_at.month %>
+                              <% else %>
+                              0<%= recipe.created_at.month %>
+                              <% end %>/<%= recipe.created_at.year %>
+                              <br>
+                            </div>
+                          </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          <% else %>
+            <h3>Pesquise por uma receita <b> ;)</b> </h3>
+          <% end %>
+        <% else %>
+          <h4>Nenhuma encontrada</h4>
+        <% end %>
+        <br>
   		</div>
+
       <div class="tab-pane center" id="users">
         <% if @query_users != [] %>
           <% if @query_users != nil %>
@@ -71,25 +140,38 @@
               <div class="row">
                 <div class="col-md-10 col-md-offset-1">
                   <div class="well well-sm">
+                    <a href="/user/<%= user.username %>">
                     <div class="row">
                       <div class="col-sm-6 col-md-4">
-                        <img src="http://www.criarfacebook.com/wp-content/uploads/2016/08/perfil-facebook-400x250.jpg"
-                          class="img-rounded img-responsive" alt="HTML5 Icon" style="width:75%;height:75%;"/>
+                        <div class="profile-img">
+                          <%= image_tag(user.avatar.url(:medium), class:"img-responsive", alt:"") %>
+                        </div>
                       </div>
                       <div class="col-sm-6 col-md-8">
-                        <h4><a href="/user/<%= user.username %>">Nome: <%= user.first_name %> <%= user.last_name %></a></h4>
-                        <i class="glyphicon glyphicon-star"></i>
-                        <i class="glyphicon glyphicon-star"></i>
-                        <i class="glyphicon glyphicon-star"></i>
-                        <i class="glyphicon glyphicon-star-empty"></i>
-                        <i class="glyphicon glyphicon-star-empty"></i>
-                        <br>
-                        <i class="glyphicon glyphicon-date"></i>DD, Mês, AAAA
-                        <br>
+                        <h4>Nome: <%= user.first_name %> <%= user.last_name %></h4>
                         <i class="glyphicon glyphicon-envelope"></i>  E-mail: <%= user.email %>
+                        <br>
+                        <br>
+                        <div class="yellow">
+                          <i class="glyphicon glyphicon-star"></i>
+                          <i class="glyphicon glyphicon-star"></i>
+                          <i class="glyphicon glyphicon-star"></i>
+                          <i class="glyphicon glyphicon-star-empty"></i>
+                          <i class="glyphicon glyphicon-star-empty"></i>
+                        </div>
+                        <% if(user.created_at.day > 10) %>
+                          <%= user.created_at.day %>
+                        <% else %>
+                          0<%= user.created_at.day %>
+                        <% end %>/<% if(user.created_at.month > 10) %>
+                          <%= user.created_at.month %>
+                        <% else %>
+                        0<%= user.created_at.month %>
+                        <% end %>/<%= user.created_at.year %>
                         <br>
                       </div>
                     </div>
+                  </a>
                   </div>
                 </div>
               </div>
