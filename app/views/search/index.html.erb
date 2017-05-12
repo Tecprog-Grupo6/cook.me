@@ -1,22 +1,43 @@
 <style>
 .nav-pills > li > a {
   border-radius: 4px 4px 0 0 ;
+  color: white;
+}
+
+.section-content{
+  text-align: center;
+}
+
+.nav-pills > li > a:hover {
+  color: black;
+}
+
+.content-header{
+  font-family: 'Oleo Script', cursive;
+  font-size: 45px;
+  padding-top: 40px;
+}
+
+.yellow{
+  color:#fcc500;
 }
 
 .tab-content {
   color : white;
-  background-color: #ff531a;
+  background-color: #2C4770;
   padding : 60px 15px;
   border-radius: 0 0 8px 8px ;
 }
 
 .nav-pills > li.active > a, .nav-pills > li.active > a:focus {
-  color: black;
-  background-color: #ff531a;
+  color: white;
+  background-color: #2C4770;
 }
+
 .center {
   text-align: center;
 }
+
 .well {
   color : black;
   background-color: white;
@@ -26,64 +47,67 @@
 }
 </style>
 
-<div class="container"><h2>Busca</h2></div>
+<div class="section-content">
+  <h1 class="content-header">Buscar no <span class="yellow"> Cook.me</span></h1>
+</div>
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
-  <ul  class="nav nav-pills">
-		<li class="active">
-      <a  href="#recipes" data-toggle="tab">Receitas</a>
-		</li>
-		<li><a href="#ingredients" data-toggle="tab">Ingredientes</a>
-		</li>
-		<li><a href="#users" data-toggle="tab">Usuários</a>
-		</li>
-	</ul>
-	<div class="tab-content clearfix">
-	  <div class="tab-pane center active" id="recipes">
-      <h3>Receitas</h3>
-      <p>Cadê as receitas?</p>
-		</div>
-		  <div class="tab-pane center" id="ingredients">
+    <ul  class="nav nav-pills">
+  		<li class="active">
+        <a  href="#recipes" data-toggle="tab">Receitas</a>
+  		</li>
+  		<li><a href="#ingredients" data-toggle="tab">Ingredientes</a>
+  		</li>
+  		<li><a href="#users" data-toggle="tab">Usuários</a>
+  		</li>
+  	</ul>
+  	<div class="tab-content clearfix">
+  	  <div class="tab-pane center active" id="recipes">
+        <h3>Receitas</h3>
+        <p>Cadê as receitas?</p>
+  		</div>
+  		<div class="tab-pane center" id="ingredients">
         <h3>Ingredientes</h3>
         <p>Cadê os ingredientes?</p>
       </div>
-    <div class="tab-pane center" id="users">
-      <% if @query_users != [] %>
-        <% if @query_users != nil %>
-          <% @query_users.each do |user| %>
-            <div class="row">
-              <div class="col-md-10 col-md-offset-1">
-                <div class="well well-sm">
-                  <div class="row">
-                    <div class="col-sm-6 col-md-4">
-                      <img src="http://www.criarfacebook.com/wp-content/uploads/2016/08/perfil-facebook-400x250.jpg" class="img-rounded img-responsive" alt="HTML5 Icon" style="width:75%;height:75%;"/>
-                    </div>
-                    <div class="col-sm-6 col-md-8">
-                      <h4><a href="/user/<%= user.username %>">Nome: <%= user.first_name %> <%= user.last_name %></a></h4>
-                      <i class="glyphicon glyphicon-star"></i>
-                      <i class="glyphicon glyphicon-star"></i>
-                      <i class="glyphicon glyphicon-star"></i>
-                      <i class="glyphicon glyphicon-star-empty"></i>
-                      <i class="glyphicon glyphicon-star-empty"></i>
-                      <br>
-                      <i class="glyphicon glyphicon-date"></i>DD, Mês, AAAA
-                      <br>
-                      <i class="glyphicon glyphicon-envelope"></i>  E-mail: <%= user.email %>
-                      <br>
+      <div class="tab-pane center" id="users">
+        <% if @query_users != [] %>
+          <% if @query_users != nil %>
+            <% @query_users.each do |user| %>
+              <div class="row">
+                <div class="col-md-10 col-md-offset-1">
+                  <div class="well well-sm">
+                    <div class="row">
+                      <div class="col-sm-6 col-md-4">
+                        <img src="http://www.criarfacebook.com/wp-content/uploads/2016/08/perfil-facebook-400x250.jpg"
+                          class="img-rounded img-responsive" alt="HTML5 Icon" style="width:75%;height:75%;"/>
+                      </div>
+                      <div class="col-sm-6 col-md-8">
+                        <h4><a href="/user/<%= user.username %>">Nome: <%= user.first_name %> <%= user.last_name %></a></h4>
+                        <i class="glyphicon glyphicon-star"></i>
+                        <i class="glyphicon glyphicon-star"></i>
+                        <i class="glyphicon glyphicon-star"></i>
+                        <i class="glyphicon glyphicon-star-empty"></i>
+                        <i class="glyphicon glyphicon-star-empty"></i>
+                        <br>
+                        <i class="glyphicon glyphicon-date"></i>DD, Mês, AAAA
+                        <br>
+                        <i class="glyphicon glyphicon-envelope"></i>  E-mail: <%= user.email %>
+                        <br>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
+            <% end %>
+          <% else %>
+            <h3>Pesquise por um usuário <b> ;)</b> </h3>
           <% end %>
         <% else %>
-          <h3>Pesquise por um usuário <b> ;)</b> </h3>
+          <h4>Nenhum usuário encontrado</h4>
         <% end %>
-      <% else %>
-        <h4>Nenhum usuário encontrado</h4>
-      <% end %>
-      <br>
-		</div>
-	</div>
-</div>
+        <br>
+  		</div>
+  	</div>
+  </div>
 </div>
