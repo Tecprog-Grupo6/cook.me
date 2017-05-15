@@ -3,7 +3,9 @@ class RecipeController < ApplicationController
   skip_before_action :verify_authenticity_token, only: [:save]
 
   def show
-
+    @recipe = Recipe.find(params[:recipe_id])
+    result = render template: "recipe/show.html.erb"
+    return result
   end
 
   def new
@@ -25,6 +27,7 @@ class RecipeController < ApplicationController
   end
 
   def edit
+    @recipe = Recipe.find(params[:recipe_id])
     result = render template: "recipe/edit.html.erb"
     return result
   end
