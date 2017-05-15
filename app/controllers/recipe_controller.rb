@@ -33,9 +33,9 @@ class RecipeController < ApplicationController
   end
 
   def edit
-      @recipe = Recipe.find(params[:recipe_id])
-      result = render template: "recipe/edit.html.erb"
-      return result
+    @recipe = Recipe.find(params[:recipe_id])
+    result = render template: "recipe/edit.html.erb"
+    return result
   end
 
   def delete
