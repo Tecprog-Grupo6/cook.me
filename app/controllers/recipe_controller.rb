@@ -4,6 +4,11 @@ class RecipeController < ApplicationController
 
   def show
     #[TODO]
+    
+    @recipe = Recipe.find(params[:recipe_id])
+    result = render template: "recipe/show.html.erb"
+    return result
+
   end
 
   def new
@@ -30,6 +35,7 @@ class RecipeController < ApplicationController
 
   def edit
 
+    @recipe = Recipe.find(params[:recipe_id])
     result = render template: "recipe/edit.html.erb"
     return result
 
