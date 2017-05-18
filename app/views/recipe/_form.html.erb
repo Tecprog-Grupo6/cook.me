@@ -1,0 +1,29 @@
+<div class="contact-section">
+  <div class="container">
+    <form accept-charset="UTF-8" method="post" action="/receita/<%= params[:recipe_id] %>" >
+      <div class="col-md-6 form-line">
+          <div class="form-group">
+            <label for="name">Nome: </label>
+            <input type="text" value="<%=  @recipe != nil ? @recipe[:title] : nil %>" class="form-control" placeholder=" Nome da receita" name="name" required>
+          </div>
+          <div class="form-group">
+            <label for="people">Serve: </label>
+            <input type="number" value="<%=  @recipe != nil ? @recipe[:served_people] : nil %>" class="form-control" placeholder=" Quantidade de pessoas" name="people" required>
+          </div>
+          <div class="form-group">
+            <label for="Time">Tempo de preparo</label>
+            <input type="number" value="<%=  @recipe != nil ? @recipe[:prepare_time] : nil %>" class="form-control" placeholder=" Tempo de preparo em minutos" name="time" required>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for ="preparation"> Modo de preparo</label>
+            <textarea  class="form-control" rows="8" placeholder=" Descreva o modo de preparo" name="preparation" required><%=  @recipe != nil ? @recipe[:text] : nil %></textarea>
+          </div>
+          <div>
+            <button type="submit" class="btn btn-default submit"><i class="fa fa-paper-plane" aria-hidden="true"></i>  Salvar receita</button>
+          </div>
+      </div>
+    </form>
+  </div>
+</div>

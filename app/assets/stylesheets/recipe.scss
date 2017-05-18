@@ -1,0 +1,47 @@
+// Place all the styles related to the Recipe controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.content-header{
+  font-family: 'Oleo Script', cursive;
+  font-size: 45px;
+}
+
+.yellow{
+  color:#fcc500;
+}
+
+.section-content{
+  text-align: center;
+}
+#contact{
+
+  //font-family: 'Teko', sans-serif;
+  padding-top: 60px;
+  width: 100%;
+  width: 100vw;
+  height: 550px;
+  //background: #3a6186;
+  //background: -webkit-linear-gradient(to left, #3a6186 , #89253e);
+  //background: linear-gradient(to left, #3a6186 , #89253e);
+  //color : #fff;
+}
+.contact-section{
+  padding-top: 40px;
+}
+.form-line{
+  border-right: 1px solid #B29999;
+}
+label{
+  font-size: 1.3em;
+  line-height: 1em;
+  font-weight: normal;
+}
+.submit{
+  //font-size: 1.1em;
+  float: right;
+  width: 150px;
+  //background-color: #fcc500;
+  //color: #fff;
+
+}
