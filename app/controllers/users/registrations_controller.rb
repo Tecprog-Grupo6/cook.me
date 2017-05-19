@@ -13,7 +13,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
       params[:user][:last_name], :email => params[:user][:email],:password =>
       params[:user][:password], :password_confirmation =>
       params[:user][:password_confirmation], :username =>
-      params[:user][:username], :avatar => params[:user][:avatar])
+      params[:user][:username], :avatar => params[:user][:avatar],:birthday => 
+      params[:user][:birthday], :gender => params[:user][:gender])
 
     if @user.save
       sign_in(:user, @user)
@@ -39,6 +40,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
       @user_edit.first_name = params[:user][:first_name]
       @user_edit.last_name = params[:user][:last_name]
       @user_edit.email = params[:user][:email]
+      @user_edit.birthday = params[:user][:birthday]
+      @user_edit.gender = params[:user][:gender]
 
       if params[:user][:password].empty? || params[:user][:password_confirmation].empty?
         @user_edit.password = params[:user][:current_password]
