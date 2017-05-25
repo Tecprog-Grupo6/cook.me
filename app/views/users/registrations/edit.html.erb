@@ -51,6 +51,22 @@
       </div>
 
       <div class="row">
+          <div class="col-md-3">
+            <div class="field">
+              <%= f.label :"Data de Nascimento" %><br />
+              <%= f.date_field :birthday, autofocus: true, :placeholder => "21/02/1994" %>
+            </div>
+          </div>
+
+          <div class="row">
+          <div class="col-md-3">
+            <div class="field">
+              <%= f.label :"Sexo" %><br />
+              <%= f.text_field :gender, autofocus: true, :placeholder => "Masculino" %>
+            </div>
+          </div>
+
+      <div class="row">
         <div class="col-md-3">
           <div class="field">
             <%= f.label :"Senha" %><i>(deixe em branco caso não queira alterar)</i><br />

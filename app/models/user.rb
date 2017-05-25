@@ -19,6 +19,7 @@ class User < ApplicationRecord
   validates :password_confirmation, presence: true, length: { maximum: 255,
     minimum: 6 }
   validates :username, presence: true, length: { maximum: 255, minimum: 3 }
+  validates :birthday, presence: true, format: {:with => /\d{2}\/\d{2}\/\d{4}/, :on => :save}
 
   has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>" },
     default_url: "/images/:style/missing.png"
