@@ -11,7 +11,8 @@ class RegistrationsControllerTest < ActionDispatch::IntegrationTest
         :username => "johndoe",
         :email => "johndoe@email.com",
         :password => "123456",
-        :password_confirmation => "123456"
+        :password_confirmation => "123456",
+        :birthday => "11/02/1993"
     }
     @user_2 =  {
         :first_name => "John",
@@ -26,6 +27,7 @@ class RegistrationsControllerTest < ActionDispatch::IntegrationTest
         :password => "",
         :password_confirmation => "",
         :current_password => "123456",
+        :birthday => "11/02/1993",
         :avatar => nil
     }
     @user_edit_2 =  {
@@ -36,6 +38,7 @@ class RegistrationsControllerTest < ActionDispatch::IntegrationTest
         :password => "",
         :password_confirmation => "",
         :current_password => "654321",
+        :birthday => "11/02/1993",
         :avatar => nil
     }
     @user_edit_3 =  {
@@ -46,6 +49,7 @@ class RegistrationsControllerTest < ActionDispatch::IntegrationTest
         :password => "654321",
         :password_confirmation => "654321",
         :current_password => "123456",
+        :birthday => "11/02/1993",
         :avatar => nil
     }
     @user_edit_4 =  {
@@ -56,6 +60,7 @@ class RegistrationsControllerTest < ActionDispatch::IntegrationTest
         :password => "",
         :password_confirmation => "",
         :current_password => "123456",
+        :birthday => "11/02/1993",
         :avatar => nil
     }
     @user_edit_5 =  {
@@ -66,6 +71,7 @@ class RegistrationsControllerTest < ActionDispatch::IntegrationTest
         :password => "",
         :password_confirmation => "",
         :current_password => "123456",
+        :birthday => "11/02/1993",
         :avatar => ""
     }
   end
@@ -148,7 +154,7 @@ class RegistrationsControllerTest < ActionDispatch::IntegrationTest
 
     post "/login", :params => { :email => @user_1[:email], :password => @user_1[:password] }
     post "/perfil/atualizar", :params => { :user =>  @user_edit_5 }
-    
+
     assert_response(:success, "Avatar wasn't changed")
 
     User.find_by(:username => @user_1[:username]).destroy
