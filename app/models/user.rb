@@ -40,12 +40,4 @@ class User < ApplicationRecord
     following.include?(other_user)
   end
 
-  def birthday_first
-    118.years.ago
-  end
-
-  def birthday_last
-    18.years.ago
-  end
-
 end
