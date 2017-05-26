@@ -12,6 +12,7 @@ class User < ApplicationRecord
                                     dependent:   :destroy
   has_many :following, through: :active_follow_associations, source: :followed
   has_many :followers, through: :passive_follow_associations, source: :follower
+  has_many :recipes, dependent: :destroy
 
   validates :first_name, presence: true, length: { maximum: 255, minimum: 3 }
   validates :last_name, presence: true, length: { maximum: 255, minimum: 3 }
