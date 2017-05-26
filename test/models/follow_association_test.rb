@@ -9,7 +9,9 @@ class FollowAssociationTest < ActiveSupport::TestCase
       :username => "johndoe",
       :email => "johndoe@email.com",
       :password => "123456",
-      :password_confirmation => "123456"
+      :password_confirmation => "123456",
+      :birthday => "01/01/1990",
+      :gender => "Masculino"
     }
 
     user_2 = {
@@ -18,7 +20,9 @@ class FollowAssociationTest < ActiveSupport::TestCase
       :username => "willsmith",
       :email => "willsmith@email.com",
       :password => "123456",
-      :password_confirmation => "123456"
+      :password_confirmation => "123456",
+      :birthday => "01/01/1990",
+      :gender => "Masculino"
     }
 
     User.destroy_all
@@ -27,13 +31,15 @@ class FollowAssociationTest < ActiveSupport::TestCase
     @user = User.new(:id => 1, :first_name => user_1[:first_name],
     :last_name => user_1[:last_name], :username => user_1[:username],
     :email => user_1[:email], :password => user_1[:password],
-    :password_confirmation => user_1[:password_confirmation])
+    :password_confirmation => user_1[:password_confirmation],
+    :birthday => user_1[:birthday], :gender => user_1[:birthday])
     @user.save
 
     @user_2 = User.new(:id => 2, :first_name => user_2[:first_name],
     :last_name => user_2[:last_name], :username => user_2[:username],
     :email => user_2[:email], :password => user_2[:password],
-    :password_confirmation => user_2[:password_confirmation])
+    :password_confirmation => user_2[:password_confirmation],
+    :birthday => user_2[:birthday], :gender => user_2[:birthday])
     @user_2.save
 
     @follow_association = FollowAssociation.new(:follower_id => @user.id,
