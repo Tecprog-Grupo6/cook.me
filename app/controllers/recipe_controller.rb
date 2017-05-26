@@ -4,7 +4,7 @@ class RecipeController < ApplicationController
 
   def show
     #[TODO]
-    
+
     @recipe = Recipe.find(params[:recipe_id])
     result = render template: "recipe/show.html.erb"
     return result
@@ -20,7 +20,10 @@ class RecipeController < ApplicationController
 
   def save_new
 
-    @recipe = Recipe.new(:title => params[:name], :text => params[:preparation], :served_people => params[:people], :prepare_time => params[:time])
+    @recipe = Recipe.new( :title => params[:name],
+                         :text => params[:preparation],
+                         :served_people => params[:people],
+                         :prepare_time => params[:time] )
     return save(@recipe)
 
   end
@@ -28,7 +31,10 @@ class RecipeController < ApplicationController
   def save_old
 
     @recipe = Recipe.find(params[:recipe_id])
-    @recipe.assign_attributes(:title => params[:name], :text => params[:preparation], :served_people => params[:people], :prepare_time => params[:time])
+    @recipe.assign_attributes( :title => params[:name],
+                              :text => params[:preparation],
+                              :served_people => params[:people],
+                              :prepare_time => params[:time] )
     return save(@recipe)
 
   end
@@ -55,5 +61,4 @@ class RecipeController < ApplicationController
     end
 
   end
-
 end
