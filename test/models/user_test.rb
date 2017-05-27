@@ -1,7 +1,12 @@
+# File name: user_test.rb
+# Class name: UserTest
+# Description: This class define all of the User model
+
 require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
 
+  #This setup setting and save two generic users to be tested
   def setup
     user_1 = {
       :first_name => "John",

@@ -1,3 +1,7 @@
+# File name: user.rb
+# Class name: User
+# Description: This class define all the validates and relationships's User
+
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -16,10 +20,11 @@ class User < ApplicationRecord
   validates :first_name, presence: true, length: { maximum: 255, minimum: 3 }
   validates :last_name, presence: true, length: { maximum: 255, minimum: 3 }
   validates :password, presence: true, length: { maximum: 255, minimum: 6 }
-  validates :password_confirmation, presence: true, length: { maximum: 255,
-    minimum: 6 }
+  validates :password_confirmation, presence: true, length: { maximum: 255, minimum: 6 }
   validates :username, presence: true, length: { maximum: 255, minimum: 3 }
-  validates :birthday, presence: true, format: {:with => /\d{2}\/\d{2}\/\d{4}/, :on => :save}
+
+  #The birthday must be formated by day/month/year
+  validates :birthday, presence: true, format: {:with => /\d{day}\/\d{month}\/\d{year}/, :on => :save}
 
   has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>" },
     default_url: "/images/:style/missing.png"
