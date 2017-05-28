@@ -20,6 +20,10 @@
             <label for ="preparation"> Modo de preparo</label>
             <textarea  class="form-control" rows="8" placeholder=" Descreva o modo de preparo" name="preparation" required><%=  @recipe != nil ? @recipe[:text] : nil %></textarea>
           </div>
+          <div class="form-group">
+            <label for="user">Usuario: </label>
+            <input type="text" value="<%=  @recipe != nil ? @recipe[:user] : nil %>" class="form-control" name="user_id" required>
+          </div>
           <div>
             <button type="submit" class="btn btn-default submit"><i class="fa fa-paper-plane" aria-hidden="true"></i>  Salvar receita</button>
           </div>

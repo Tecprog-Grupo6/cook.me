@@ -104,6 +104,15 @@ Licensed under MIT
       <br>
       <div class="profile-cookbook" id="cookbook">
         <div class="title-session">Cookbook</div>
+        <% if !@profile_user.recipes.empty? %>
+          <% @profile_user.recipes.each do |recipe| %>
+            <%= recipe.title %>
+          <% end %>
+        <% else %>
+          <div class="col-md-8">
+            <p>Este usuário ainda não tem receitas</p>
+            </div>
+          <% end %>
       </div>
 		</div>
 	</div>
