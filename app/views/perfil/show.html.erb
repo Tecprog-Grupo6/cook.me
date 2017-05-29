@@ -59,7 +59,7 @@ Licensed under MIT
 			</div>
 		</div>
 		<div class="col-md-9">
-      <div class="profile-statistics" id="estatisticas" style="background-color: black">
+      <div class="profile-statistics" id="estatisticas">
         <div class="title-session">Estatísticas</div>
         <div class="row">
           <div class="subtitle-session">Seguidores (total: <%= @profile_user.followers.count %>)</div><br>
@@ -102,7 +102,7 @@ Licensed under MIT
         </div>
       </div>
       <br>
-      <div class="profile-cookbook" id="cookbook" style="background-color: black">
+      <div class="profile-cookbook" id="cookbook">
         <div class="title-session">Cookbook</div>
         <% if !@profile_user.recipes.empty? %>
           <ul>
