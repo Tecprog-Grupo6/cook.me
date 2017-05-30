@@ -23,7 +23,8 @@ class RecipeController < ApplicationController
     @recipe = Recipe.new( :title => params[:name],
                          :text => params[:preparation],
                          :served_people => params[:people],
-                         :prepare_time => params[:time] )
+                         :prepare_time => params[:time],
+                         :user_id => params[:user_id] )
     return save(@recipe)
 
   end
@@ -34,7 +35,8 @@ class RecipeController < ApplicationController
     @recipe.assign_attributes( :title => params[:name],
                               :text => params[:preparation],
                               :served_people => params[:people],
-                              :prepare_time => params[:time] )
+                              :prepare_time => params[:time],
+                              :user_id => params[:user_id] )
     return save(@recipe)
 
   end

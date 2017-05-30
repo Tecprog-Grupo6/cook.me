@@ -8,6 +8,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  has_many :recipes, dependent: :destroy
   has_many :active_follow_associations, class_name:  "FollowAssociation",
                                  foreign_key: "follower_id",
                                  dependent:   :destroy
