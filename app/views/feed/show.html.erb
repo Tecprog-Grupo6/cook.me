@@ -1,0 +1,66 @@
+<style>
+  .yellow{
+    color:#fcc500;
+  }
+</style>
+
+<h1>Feed#show</h1>
+<p>Find me in app/views/feed/show.html.erb</p>
+<div class="pane" style="color: black"id="recipes">
+  <% if @recipes_list != [] %>
+    <% if @recipes_list != nil %>
+      <% @recipes_list.each do |recipe| %>
+        <div class="row">
+          <div class="col-md-10 col-md-offset-1">
+            <div class="well well-sm">
+              <div class="row">
+                <div class="col-md-10 col-md-offset-1">
+                  <h3>Nome: <a href="/receita/visualizar/<%= recipe.id =%>"><%= recipe[:title] =%></a></h3>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                  <img src="http://runawayapricot.com/wp-content/uploads/2014/09/placeholder.jpg"
+                    class="img-rounded img-responsive" alt="HTML5 Icon" style="width:75%;height:75%;"/>
+                </div>
+                <div class="col-md-5 info-content">
+                    <br>
+                    <h4>Serve <%= recipe.served_people =%> pessoas</h4>
+                    <br>
+                    <h4>Tempo de preparo <%= recipe.served_people =%> minutos</h4>
+                    <br>
+                    <div class="row">
+                      <div class="col-md-6 col-md-offset-3">
+                        <div class="yellow">
+                          <i class="glyphicon glyphicon-star"></i>
+                          <i class="glyphicon glyphicon-star"></i>
+                          <i class="glyphicon glyphicon-star"></i>
+                          <i class="glyphicon glyphicon-star-empty"></i>
+                          <i class="glyphicon glyphicon-star-empty"></i>
+                        </div>
+                        <% if(recipe.created_at.day > 10) %>
+                          <%= recipe.created_at.day %>
+                        <% else %>
+                          0<%= recipe.created_at.day %>
+                        <% end %>/<% if(recipe.created_at.month > 10) %>
+                          <%= recipe.created_at.month %>
+                        <% else %>
+                        0<%= recipe.created_at.month %>
+                        <% end %>/<%= recipe.created_at.year %>
+                        <br>
+                      </div>
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    <% else %>
+      <h3>Pesquise por uma receita <b> ;)</b> </h3>
+    <% end %>
+  <% else %>
+    <h4>Os usuários que você segue ainda não possuem receitas!</h4>
+  <% end %>
+  <br>
+</div>
