@@ -1,18 +1,24 @@
 class FeedController < ApplicationController
 
   def show
-    @recipes_list = Array.new()
+    if user_signed_in?
+      @recipes_list = Array.new()
 
-    current_user.following do |user|
-      user.recipes do |recipe|
-        @recipes_list.push(recipe)
+      current_user.following.each do |user|
+        user.recipes.each do |recipe|
+          @recipes_list.push(recipe)
+        end
       end
+
+      # Sort the list by creation order
+      @recipes_list = @recipes_list.sort_by{|e| e[:created_at]}.reverse
+
+      result = render template: "feed/show.html.erb"
+      return result
+    else
+      result = render template: "home/index.html.erb"
+      return result
     end
-
-    # Sort the list by creation order
-    @recipes_list.sort_by{|e| e[:created_at]}.reverse
-
-    return @recipes_list
   end
 
 end
