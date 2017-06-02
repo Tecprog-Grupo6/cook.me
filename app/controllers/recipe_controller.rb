@@ -10,6 +10,11 @@ class RecipeController < ApplicationController
 
     # Searching a recipe
     @recipe_posted = Recipe.find(params[:recipe_id])
+    @recipe_id = @recipe_posted.id
+    @recipe_title = @recipe_posted.title
+    @recipe_description = @recipe_posted.text
+    @recipe_served_people = @recipe_posted.served_people
+    @recipe_prepare_time = @recipe_posted.prepare_time
     logger.debug " Inspect a valid found recipe"
 
     if @recipe_posted != nil

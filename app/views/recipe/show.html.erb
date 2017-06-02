@@ -1,2 +1,38 @@
-<h1>Recipe#show</h1>
-<p>Find me in app/views/recipe/show.html.erb</p>
+<div class="row">
+  <div class="col-md-10 col-md-offset-1">
+    <div class="well well-sm">
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+          <h3>Nome: <%= @recipe_title %></a></h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <img src="http://runawayapricot.com/wp-content/uploads/2014/09/placeholder.jpg"
+            class="img-rounded img-responsive" alt="HTML5 Icon" style="width:75%;height:75%;"/>
+        </div>
+        <div class="col-md-5 info-content">
+            <br>
+            <h4> Descrição da Receita: <%= @recipe_description %></h4>
+            <br>
+            <h4>Serve <%= @recipe_served_people %> pessoas</h4>
+            <br>
+            <h4>Tempo de preparo <%= @recipe_prepare_time %> minutos</h4>
+            <br>
+            <div class="row">
+              <div class="col-md-6 col-md-offset-3">
+                <div class="yellow">
+                  <i class="glyphicon glyphicon-star"></i>
+                  <i class="glyphicon glyphicon-star"></i>
+                  <i class="glyphicon glyphicon-star"></i>
+                  <i class="glyphicon glyphicon-star-empty"></i>
+                  <i class="glyphicon glyphicon-star-empty"></i>
+                </div>
+                <br>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

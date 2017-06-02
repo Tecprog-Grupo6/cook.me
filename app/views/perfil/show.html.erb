@@ -107,7 +107,9 @@ Licensed under MIT
         <% if !@profile_user.recipes.empty? %>
           <ul>
           <% @profile_user.recipes.each do |recipe| %>
-            <li><%= recipe.title %> </li>
+            <li>
+            <a href="/receita/visualizar/<%= recipe.id =%>"><%= recipe[:title] =%></a>
+          </li>
           </ul>
 
           <% end %>
