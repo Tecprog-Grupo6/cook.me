@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get '/receita/visualizar/:recipe_id' => 'recipe#show'
   get '/receita/criar' => 'recipe#new'
   get '/receita/editar/:recipe_id' => 'recipe#edit'
+  get '/receita/comentar/' => 'recipe#comentar'
   post '/receita/' => 'recipe#save_new'
   post '/receita/:recipe_id' => 'recipe#save_old'
   get '/buscar' => 'search#index'
