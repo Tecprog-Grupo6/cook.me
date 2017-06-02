@@ -7,7 +7,7 @@ class RecipeController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def show
-    
+
     # Searching a recipe
     @recipe_posted = Recipe.find(params[:recipe_id])
     logger.debug " Inspect a valid found recipe"
@@ -39,7 +39,7 @@ class RecipeController < ApplicationController
   end
 
   def save_old
-    @recipe = Recipe.find(params[:recipe_id]
+    @recipe = Recipe.find(params[:recipe_id])
     @recipe.assign_attributes(:title => params[:name],
                               :text => params[:preparation],
                               :served_people => params[:people],
