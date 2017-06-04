@@ -1,63 +1,58 @@
-<div class="row">
-  <div class="col-md-offset-3">
-
-    <h2>Criar Conta</h2>
-
-    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+<!DOCTYPE html>
+<title>Cook.me | Criar Conta</title>
+<div class="container text-center">
+  <div class="row">
+    <div class="col-sm-6 well col-md-offset-3">
+      <h2>Criar Conta</h2>
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
       <%= devise_error_messages! %>
-
+      <div class="well">
         <div class="row">
-          <div class="col-md-3">
+          <div class="col-md-1 ">
             <div class="field">
               <%= f.label :"Nome" %><br />
-              <%= f.text_field :first_name, autofocus: true, :placeholder => "John Doe" %>
+              <%= f.text_field :first_name, autofocus: true, :placeholder => "Jair Messias" %>
             </div>
           </div>
-
-          <div class="col-md-3">
+          <div class="col-md-11">
             <div class="field">
               <%= f.label :"Sobrenome" %><br />
-              <%= f.text_field :last_name, autofocus: "off", :placeholder => "Smith" %>
+              <%= f.text_field :last_name, autofocus: "off", :placeholder => "Bolsonaro" %>
             </div>
           </div>
         </div>
-
         <div class="row">
-          <div class="col-md-6">
-            <div class="field">
-              <%= f.label :"E-mail" %><br />
-              <%= f.email_field :email, autofocus: "off", :placeholder => "email@example.com" %>
-            </div>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-md-3">
+          <div class="col-md-1">
             <div class="field">
               <%= f.label :"Data de Nascimento" %><br />
               <%= f.date_field :birthday, :placeholder => "21/02/1994" %>
             </div>
           </div>
-
-          <div class="row">
+          <div class="col-md-11">
+            <div class="field">
+              <%= f.label :"Email" %><br />
+              <%= f.email_field :email, autofocus: "off", :placeholder => "email@example.com" %>
+            </div>
+          </div>
+        </div>
+        <div class="row">
           <div class="col-md-3">
             <div class="field">
               <%= f.label :"Sexo" %><br />
               <%= f.text_field :gender, autofocus: true, :placeholder => "Masculino" %>
             </div>
           </div>
-
+        </div>
         <div class="row">
           <div class="col-md-3">
             <div class="field">
               <%= f.label :"Senha" %>
               <% if @minimum_password_length %>
-              <em>(mínimo de <%= @minimum_password_length %> caracteres)</em>
+                <em>(mínimo de <%= @minimum_password_length %> caracteres)</em>
               <% end %><br />
               <%= f.password_field :password, autocomplete: "off", :placeholder => "******" %>
             </div>
           </div>
-
           <div class="col-md-3">
             <div class="field">
               <%= f.label :"Confirmar senha" %><br />
@@ -65,7 +60,6 @@
             </div>
           </div>
         </div>
-
         <div class="row">
           <div class="col-md-3">
             <div class="field">
@@ -73,7 +67,6 @@
               <%= f.text_field :username, autofocus: "off", :placeholder => "john_doe" %>
             </div>
           </div>
-
           <div class="col-md-3">
             <div class="field">
               <%= f.label :"Foto" %><br />
@@ -81,15 +74,13 @@
             </div>
           </div>
         </div>
-
         <br>
-
         <div class="actions">
           <%= f.submit "Confirmar" %>
         </div>
-    <% end %>
-
+        <% end %>
+      </div>
+    </div>
+    <br><%= render "users/shared/links" %>
   </div>
 </div>
-
-<br><%= render "users/shared/links" %>
