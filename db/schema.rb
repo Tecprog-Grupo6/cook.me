@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 20170526043641) do
+ActiveRecord::Schema.define(version: 20170603233639) do
 
   create_table "follow_associations", force: :cascade do |t|
     t.integer  "follower_id"
@@ -31,6 +30,10 @@ ActiveRecord::Schema.define(version: 20170526043641) do
     t.integer  "served_people"
     t.integer  "prepare_time"
     t.integer  "user_id"
+    t.string   "image_one_file_name"
+    t.string   "image_one_content_type"
+    t.integer  "image_one_file_size"
+    t.datetime "image_one_updated_at"
     t.index ["user_id"], name: "index_recipes_on_user_id"
   end
 
