@@ -63,3 +63,32 @@
 // Utility classes
 @import "bootstrap/utilities";
 @import "bootstrap/responsive-utilities";
+
+* {
+	margin: 0;
+}
+
+html, body {
+  background: linear-gradient(to left, #3a6186 , #89253e);
+  color : #000;
+  height: 100%;
+}
+
+#wrap {
+  min-height: 100%;
+}
+
+#main {
+  overflow:auto;
+  padding-bottom:150px; /* this needs to be bigger than footer height*/
+}
+
+.footer {
+  background-color: #000;
+  color: white;
+  position: relative;
+  margin-top: -55px; /* negative value of footer height */
+  height: 55px;
+  clear:both;
+  padding-top:20px;
+}

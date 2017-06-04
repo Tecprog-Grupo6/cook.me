@@ -20,31 +20,24 @@
 
 
     <style>
-      body {
-        background: linear-gradient(to left, #3a6186 , #89253e);
-        color : #000;
-      }
-      
-      footer {
-      /* Set black background color, white text and some padding */
-      background-color: #000;
-      color: white;
-      padding: 15px;
-      }
+
     </style>
   </head>
 
-  <body>
-    <!-- Header -->
-     <div class="header">
-       <%= render "/layouts/header" %>
-     </div>
-
-    <%= yield %>
-    
-    <footer class="container-fluid text-center">
+<body>
+    <div id="wrap">
+      <div id="main" class="clear-top">
+        <!-- Header -->
+        <div class="header">
+          <%= render "/layouts/header" %>
+        </div>
+        <!-- Content -->
+        <%= yield %>
+      </div>
+    </div>
+    <!-- Footer -->
+    <footer class="footer container-fluid text-center">
       <p>© Copyright 2017 Cook.me - All Rights Reserved</p>
     </footer>
   </body>
 
-</html>

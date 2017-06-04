@@ -18,6 +18,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
     if @user.save
       sign_in(:user, @user)
+      profile_user = @user
       render 'home/index'
     else
       render 'users/registrations/new'
