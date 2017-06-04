@@ -24,7 +24,8 @@
 /db/schema.rb
 
 # Ignore avatars folder
-/public/system
+/public/system/*
+!/public/system/no_photo
 
 # Ignore test coverage folder
 /coverage
