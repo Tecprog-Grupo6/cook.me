@@ -1,14 +1,11 @@
 Rails.application.routes.draw do
 
-
-  get 'perfil/show'
-
   devise_for :users, :controllers => {registrations: 'users/registrations'}
   resources :users, only: [ :show, :edit, :update, ]
   resources :recipes
 
-  root to: "home#index"
-  get '/' => 'home#index'
+  root to: "feed#show"
+  get '/' => 'feed#show'
   get '/receita/visualizar/:recipe_id' => 'recipe#show'
   get '/receita/criar' => 'recipe#new'
   get '/receita/editar/:recipe_id' => 'recipe#edit'

@@ -1,50 +1,56 @@
+# File name: recipe_controller.rb
+# Class name: RecipeController
+# Description: This class control the actions of the Recipe, searches, saves, editions, etc.
+
 class RecipeController < ApplicationController
 
-  skip_before_action :verify_authenticity_token, only: [:save]
+  skip_before_action :verify_authenticity_token
 
   def show
-    #[TODO]
+    
+    # Searching a recipe
+    @recipe_posted = Recipe.find(params[:recipe_id])
+    logger.debug " Inspect a valid found recipe"
 
-    @recipe = Recipe.find(params[:recipe_id])
-    result = render template: "recipe/show.html.erb"
+    if @recipe_posted != nil
+      result = render template: "recipe/show.html.erb"
+      logger.debug " Inspect recipe FOUND!"
+    else
+      result = render template: "recipe/recipe_not_found.html.erb"
+      logger.debug " recipe NOT FOUND!"
+    end
     return result
-
+    logger.debug " Inspect show if the recipe WAS or WASN'T found"
   end
 
   def new
-
     result = render template: "recipe/new.html.erb"
     return result
-
   end
 
   def save_new
-
-    @recipe = Recipe.new( :title => params[:name],
-                         :text => params[:preparation],
-                         :served_people => params[:people],
-                         :prepare_time => params[:time] )
+    @recipe = current_user.recipes.create(:title => params[:name],
+                                          :text => params[:preparation],
+                                          :served_people => params[:people],
+                                          :prepare_time => params[:time])
     return save(@recipe)
+    logger.debug " Inspect RECIPE SAVED"
 
   end
 
   def save_old
-
-    @recipe = Recipe.find(params[:recipe_id])
-    @recipe.assign_attributes( :title => params[:name],
+    @recipe = Recipe.find(params[:recipe_id]
+    @recipe.assign_attributes(:title => params[:name],
                               :text => params[:preparation],
                               :served_people => params[:people],
-                              :prepare_time => params[:time] )
+                              :prepare_time => params[:time])
     return save(@recipe)
-
   end
 
   def edit
-
     @recipe = Recipe.find(params[:recipe_id])
     result = render template: "recipe/edit.html.erb"
     return result
-
   end
 
   def delete
@@ -53,12 +59,11 @@ class RecipeController < ApplicationController
 
   private
   def save (to_save_recipe)
-
     if to_save_recipe.save
       redirect_to "/receita/visualizar/#{@recipe.id}"
     else
       redirect_to '/receita/criar/'
     end
-
   end
+
 end
