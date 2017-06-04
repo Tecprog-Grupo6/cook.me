@@ -4,25 +4,25 @@
       <div class="col-md-6 form-line">
           <div class="form-group">
             <%= f.label :"Nome:" %><br />
-            <%= f.text_field :title, :placeholder => "Nome da receita", class: "form-control" %>
+            <%= f.text_field :title, :placeholder => "Nome da receita", class: "form-control", required: true, value: @recipe != nil ? @recipe[:title]: nil %>
           </div>
           <div class="form-group">
             <%= f.label :"Serve:" %><br />
-            <%= f.number_field :served_people, :placeholder => "Quantidade de pessoas", class: "form-control" %>
+            <%= f.number_field :served_people, :placeholder => "Quantidade de pessoas", class: "form-control", required: true, value: @recipe != nil ? @recipe[:served_people]: nil %>
           </div>
           <div class="form-group">
             <%= f.label :"Tempo de preparo:" %><br />
-            <%= f.number_field :prepare_time, :placeholder => "Tempo de preparo em minutos", class: "form-control" %>
+            <%= f.number_field :prepare_time, :placeholder => "Tempo de preparo em minutos", class: "form-control", required: true, value: @recipe != nil ? @recipe[:prepare_time]: nil %>
           </div>
           <div class="form-group">
             <label for="Image">Foto da receita</label>
-            <%= f.file_field :image_one, class: "form-control" %>
+            <%= f.file_field :image_one, class: "form-control", value: @recipe != nil ? @recipe[:image_one]: nil %>
           </div>
         </div>
         <div class="col-md-6">
           <div class="form-group">
             <%= f.label :"Modo de preparo:" %><br />
-            <%= f.text_area :text, :placeholder => "Descreva o modo de preparo", class: "form-control", rows: "12" %>
+            <%= f.text_area :text, :placeholder => "Descreva o modo de preparo", class: "form-control", required: true, rows: "12", value: @recipe != nil ? @recipe[:text]: nil %>
           </div>
           <div>
             <%= f.submit "Salvar receita", class: "btn btn-default submit" %>
