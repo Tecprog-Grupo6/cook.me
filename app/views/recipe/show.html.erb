@@ -18,4 +18,11 @@
     <div class="row">
       <p>Modo de preparo: <%= @recipe_posted[:text]%></p>
     </div>
+    <div class="row">
+      <%= form_for :recipes, url: "/receita/deletar/#{params[:recipe_id]}" do |f| %>
+        <div>
+          <%= f.submit "Deletar receita", class: "btn btn-default submit" %>
+        </div>
+      <% end %>
+    </div>
 </center>

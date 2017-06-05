@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   get '/receita/editar/:recipe_id' => 'recipe#edit'
   post '/receita/' => 'recipe#save_new'
   post '/receita/:recipe_id' => 'recipe#save_old'
+  post '/receita/deletar/:recipe_id' => 'recipe#delete'
   get '/buscar' => 'search#index'
   post '/buscar' => 'search#show_results'
   get '/user/:username', to: 'perfil#show'

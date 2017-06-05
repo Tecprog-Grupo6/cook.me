@@ -4,7 +4,7 @@
 
 class RecipeController < ApplicationController
 
-  skip_before_action :verify_authenticity_token
+  before_action :authenticate_user!
 
   def show
 
@@ -58,8 +58,27 @@ class RecipeController < ApplicationController
     return result
   end
 
+  #receives params[:recipe_id] from the url
+  #deletes the recipe whose id matches param recipe_id
   def delete
-    #[TODO]
+
+    if !! (Integer(params[:recipe_id]) rescue false)
+      @recipe = Recipe.find(params[:recipe_id])
+      if @recipe != nil
+        @recipe.destroy
+        if @recipe.destroyed?
+          logger.debug " Recipe with id: " + @recipe.id.to_s + " successfully destroyed"
+          redirect_to "/user/#{current_user.username}"
+        else
+          logger.debug " Recipe with id: " + @recipe.id.to_s + " failed to be destroyed"
+        end
+      else
+        logger.debug " URL param recipe_id didn't match an existing recipe id"
+      end
+    else
+      logger.debug " URL param recipe_id is not a valid Integer"
+    end
+
   end
 
   private
