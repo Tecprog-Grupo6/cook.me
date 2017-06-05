@@ -18,6 +18,9 @@ class User < ApplicationRecord
   has_many :following, through: :active_follow_associations, source: :followed
   has_many :followers, through: :passive_follow_associations, source: :follower
   has_many :recipes, dependent: :destroy
+  # Favorite recipes of user
+  has_many :favorite_recipes, class_name: "FavoriteRecipe"
+  has_many :favorites, through: :favorite_recipes, source: :recipe
 
   validates :first_name, presence: true, length: { maximum: 255, minimum: 3 }
   validates :last_name, presence: true, length: { maximum: 255, minimum: 3 }
@@ -45,6 +48,16 @@ class User < ApplicationRecord
   # Returns true if the current user is following the other user.
   def following?(other_user)
     following.include?(other_user)
+  end
+
+  #Adds an existing recipe to user's favorites
+  def favorite(a_recipe)
+    favorites << a_recipe
+  end
+
+  #Removes a recipe from user's favorites
+  def unfavorite(a_recipe)
+    favorites.delete(a_recipe)
   end
 
 end
