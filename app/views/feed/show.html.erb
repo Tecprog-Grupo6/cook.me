@@ -1,66 +1,118 @@
-<style>
-  .yellow{
-    color:#fcc500;
-  }
-</style>
+<!DOCTYPE html>
+<title>Cook.me | Feed</title>
+<div class="container text-center">
+  <div class="row">
+    <div class="col-sm-3 well">
+      <div class="thumbnail">
+        <div class="profile-userpic">
+          <%= image_tag(@profile_user.avatar.url, class:"img-responsive", alt:"") %>
+        </div>
+        <div class="profile-usertitle">
+          <div class="profile-usertitle-name">
+            <p><a href="/perfil"><%= @profile_user.first_name %> <%= @profile_user.last_name %></a></p>
+          </div>
+          <div class="profile-usertitle-job">
+            <p>Aprendiz</p>
+          </div>
+        </div>
+      </div>
+      <div class="thumbnail">
+        <p><a href="#">Interesses</a></p>
+        <p>
+          <span class="label label-default">Novas Receitas</span>
+          <span class="label label-primary">Pratos Quentes</span>
+          <span class="label label-success">Pratos Frios</span>
+          <span class="label label-info">Churrasco</span>
+          <span class="label label-warning">Almoço</span>
+          <span class="label label-danger">Brunch</span>
+        </p>
+      </div>
+      <div class="alert alert-success fade in">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+        <p><strong>Ei, aspirante a mestre-cuca!</strong></p>
+        Descobriu uma receita nova? Compartilhe com a gente!
+      </div>
+      <p><a href="#">Link</a></p>
+      <p><a href="#">Link</a></p>
+      <p><a href="#">Link</a></p>
+    </div>
+    <div class="col-sm-7">
+      <div class="row">
+        <% if @recipes_list != [] %>
+          <% if @recipes_list != nil %>
+            <% @recipes_list.each do |recipe| %>
 
-<h1>Feed#show</h1>
-<p>Find me in app/views/feed/show.html.erb</p>
-<div class="pane" style="color: black"id="recipes">
-  <% if @recipes_list != [] %>
-    <% if @recipes_list != nil %>
-      <% @recipes_list.each do |recipe| %>
-        <div class="row">
-          <div class="col-md-10 col-md-offset-1">
-            <div class="well well-sm">
-              <div class="row">
-                <div class="col-md-10 col-md-offset-1">
-                  <h3>Nome: <a href="/receita/visualizar/<%= recipe.id =%>"><%= recipe[:title] =%></a></h3>
+              <div class="col-sm-3">
+                <div class="well">
+                  <img src="http://runawayapricot.com/wp-content/uploads/2014/09/placeholder.jpg"zz class="img-circle" height="55" width="55" alt="Foto Receita">
+                  <p><a href="/receita/visualizar/<%= recipe.id =%>"><%= recipe[:title] =%></a></p>
                 </div>
               </div>
-              <div class="row">
-                <div class="col-md-4">
-                  <img src="http://runawayapricot.com/wp-content/uploads/2014/09/placeholder.jpg"
-                    class="img-rounded img-responsive" alt="HTML5 Icon" style="width:75%;height:75%;"/>
+              <div class="col-sm-9">
+                <div class="well">
+                  <p>Uma nova receita palmito na brasa que vai te enlouquecer! Temperado com orégano e alho, esse petisco vai ser a nova melhor companhia da sua cervejinha!</p>
+                  <p>Serve: <%= recipe.served_people =%> pessoas | Tempo de preparo: <%= recipe.prepare_time %> minutos</p>
+                  <p> por <%= recipe.user.first_name %> <%=recipe.user.last_name %> em  
+                  <% if(recipe.created_at.day > 10) %>
+                    <%= recipe.created_at.day %>
+                  <% else %>
+                    0<%= recipe.created_at.day %>
+                  <% end %>/<% if(recipe.created_at.month > 10) %>
+                    <%= recipe.created_at.month %>
+                  <% else %>
+                  0<%= recipe.created_at.month %>
+                  <% end %>/<%= recipe.created_at.year %>
+                  </p>
+                  <div class="yellow">
+                    <i class="glyphicon glyphicon-star"></i>
+                    <i class="glyphicon glyphicon-star"></i>
+                    <i class="glyphicon glyphicon-star"></i>
+                    <i class="glyphicon glyphicon-star-empty"></i>
+                    <i class="glyphicon glyphicon-star-empty"></i>
+                  </div>
+                  <button href="#" type="button" class="btn btn-default btn-sm">
+                  Ver Receita
+                  </button>
+                  <button href="#" type="button" class="btn btn-default btn-sm">
+                  Chefe
+                  <!-- <span class="glyphicon glyphicon-thumbs-down"></span> Dislike -->
+                  </button>
                 </div>
-                <div class="col-md-5 info-content">
-                    <br>
-                    <h4>Serve <%= recipe.served_people =%> pessoas</h4>
-                    <br>
-                    <h4>Tempo de preparo <%= recipe.served_people =%> minutos</h4>
-                    <br>
-                    <div class="row">
-                      <div class="col-md-6 col-md-offset-3">
-                        <div class="yellow">
-                          <i class="glyphicon glyphicon-star"></i>
-                          <i class="glyphicon glyphicon-star"></i>
-                          <i class="glyphicon glyphicon-star"></i>
-                          <i class="glyphicon glyphicon-star-empty"></i>
-                          <i class="glyphicon glyphicon-star-empty"></i>
-                        </div>
-                        <% if(recipe.created_at.day > 10) %>
-                          <%= recipe.created_at.day %>
-                        <% else %>
-                          0<%= recipe.created_at.day %>
-                        <% end %>/<% if(recipe.created_at.month > 10) %>
-                          <%= recipe.created_at.month %>
-                        <% else %>
-                        0<%= recipe.created_at.month %>
-                        <% end %>/<%= recipe.created_at.year %>
-                        <br>
-                      </div>
-                    </div>
-                </div>
+              </div>
+            <% end %>
+          <% else %>
+            <div class="col-sm-12 text-center">
+              <div class="well">
+                <h4>Pesquise por uma receita! ;)</h4>
+              </div>
+            </div>
+          <% end %>
+        <% else %>
+          <div class="col-sm-12 text-center">
+            <div class="well">
+              <h4>Os usuários que você segue ainda não possuem receitas!</h4>
+              <div class="alert alert-success fade in">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                <p><strong>Nada por aqui?</strong></p>
+                Use a busca para descobrir novos chefes!
               </div>
             </div>
           </div>
-        </div>
-      <% end %>
-    <% else %>
-      <h3>Pesquise por uma receita <b> ;)</b> </h3>
-    <% end %>
-  <% else %>
-    <h4>Os usuários que você segue ainda não possuem receitas!</h4>
-  <% end %>
-  <br>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-sm-2 well">
+      <div class="well">
+        <p>
+          <a href="#"><span class="glyphicon glyphicon-star text-center"></span> Favoritos</a>
+        </p>
+      </div>
+      <div class="well">
+        <p>Anúncios</p>
+      </div>
+      <div class="well">
+        <p>Anúncios</p>
+      </div>
+    </div>
+  </div>
 </div>

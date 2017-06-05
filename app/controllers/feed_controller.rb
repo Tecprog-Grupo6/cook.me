@@ -12,6 +12,7 @@ class FeedController < ApplicationController
 
       # Sort the list by creation order
       @recipes_list = @recipes_list.sort_by{|e| e[:created_at]}.reverse
+      @profile_user = current_user
 
       result = render template: "feed/show.html.erb"
       return result

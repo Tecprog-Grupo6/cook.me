@@ -3,33 +3,34 @@
 <div class="container text-center">
 	<div class="row">
 		<div class="col-sm-3 well">
+			<% if user_signed_in? %>
 			<div class="thumbnail">
-				<% if user_signed_in? %>
-					<div class="profile-userpic">
-						<%= image_tag(@profile_user.avatar.url, class:"img-responsive", alt:"") %>
+				<div class="profile-userpic">
+        	<%= image_tag(@profile_user.avatar.url, class:"img-responsive", alt:"") %>
+        </div>
+        <div class="profile-usertitle">
+          <div class="profile-usertitle-name">
+            <p><a href="/perfil"><%= @profile_user.first_name %> <%= @profile_user.last_name %></a></p>
+          </div>
+          <div class="profile-usertitle-job">
+            <p>Aprendiz</p>
+          </div>
+        </div>
+      </div>
+			<% else %>
+				<div class="well">
+					<p><strong>Realize o login ou registre-se para participar!</strong></p>
+					<div class="thumbnail">
+						<p>
+							<a href="/perfil/criar"><span class="glyphicon glyphicon-user text-center"></span> Criar Conta</a>
+						</p>
+						<p>
+							<a href="/login"><span class="glyphicon glyphicon-log-in text-center"></span> Efetuar Login</a>
+						</p>
 					</div>
-					<div class="profile-usertitle">
-						<div class="profile-usertitle-name">
-							<%= @profile_user.first_name %> <%= @profile_user.last_name %>
-						</div>
-						<div class="profile-usertitle-job">
-							<p>Aprendiz</p>
-						</div>
-					</div>
-					<button href="/perfil" class="btn btn-primary">Perfil</button>
-				<% else %>
-					<div>
-						<img src="logo.jpg" class="img-circle" height="75" width="75" alt="Logo">
-						<h3>
-						Bem vindo ao Cook.me!
-						</h3>
-						<h4>
-						A melhor rede social de culinária que você respeita.
-						</h4>
-					</div>
-				<% end %>
-			</div>
-			<div class="well">
+				</div>
+			<% end %>
+			<div class="thumbnail">
 				<p><a href="#">Interesses</a></p>
 				<p>
 					<span class="label label-default">Novas Receitas</span>
@@ -52,66 +53,34 @@
 		<div class="col-sm-7">
 			<div class="row">
 				<div class="col-sm-12">
-					<div class="panel panel-default text-left">
+					<div class="panel panel-default">
 						<div class="panel-body">
-							<div class="form-group">
-								<label for="comment">Conte a todos os seus feitos!</label>
-								<textarea class="form-control" rows="3" id="comment"></textarea>
+							<div>
+								<img src="logo.jpg" class="img-circle" height="175" width="175" alt="Logo">
+								<h1>Bem vindo ao Cook.me!</h1>
+								<h3>A rede social de culinária que você respeita.</h3>
 							</div>
-							<button type="button" class="btn btn-default btn-sm">
-							Postar
-							</button>
 						</div>
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-sm-3">
-					<div class="well">
-						<img src="bird.jpg" class="img-circle" height="55" width="55" alt="Foto Receita">
-						<p>Frango a Milanesa</p>
-					</div>
-				</div>
-				<div class="col-sm-9">
-					<div class="well">
-						<p>Uma nova receita de frango a milanesa que vai te enlouquecer! Temperado com limão e alho, esse petisco vai ser a nova melhor companhia da sua cervejinha!</p>
-						<p> por Jairse Acostumando</p>
-						<button href="#" type="button" class="btn btn-default btn-sm">
-						Ver Receita
-						</button>
-						<button href="#" type="button" class="btn btn-default btn-sm">
-						Chefe
-						<!-- <span class="glyphicon glyphicon-thumbs-down"></span> Dislike -->
-						</button>
 					</div>
 				</div>
 			</div>
 		</div>
 		<div class="col-sm-2 well">
-			<div class="well">
-				<% if user_signed_in? %>
-				<p>
-					<a href="#"><span class="glyphicon glyphicon-star text-center"></span> Favoritos</a>
-				</p>
-				<% else %>
-				<p>
-					Realize o login ou registre-se para participar!
-				</p>
-				<div class="thumbnail">
+			<% if user_signed_in? %>
+				<div class="well">
 					<p>
-						<a href="/perfil/criar"><span class="glyphicon glyphicon-user text-center"></span> Criar Conta</a>
-					</p>
-					<p>
-						<a href="/login"><span class="glyphicon glyphicon-log-in text-center"></span> Efetuar Login</a>
+						<a href="#"><span class="glyphicon glyphicon-star text-center"></span> Favoritos</a>
 					</p>
 				</div>
-				<% end %>
+			<% end %>
+			<div class="well">
+				<p>Lorem ipsum</p>
 			</div>
 			<div class="well">
-				<p>ADS</p>
+				<p>Lorem ipsum</p>
 			</div>
 			<div class="well">
-				<p>ADS</p>
+				<p>Lorem ipsum</p>
 			</div>
 		</div>
 	</div>
