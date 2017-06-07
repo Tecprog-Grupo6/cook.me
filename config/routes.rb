@@ -2,7 +2,9 @@ Rails.application.routes.draw do
 
   devise_for :users, :controllers => {registrations: 'users/registrations'}
   resources :users, only: [ :show, :edit, :update, ]
-  resources :recipes
+  resources :recipes do
+    put :favorite, on:  :member
+  end
 
   root to: "feed#show"
   get '/' => 'feed#show'
@@ -16,6 +18,7 @@ Rails.application.routes.draw do
   get '/user/:username', to: 'perfil#show'
   post '/user/:username/followed_by/:current_user_username', to: 'perfil#follow'
   post '/user/:username/unfollowed_by/:current_user_username', to: 'perfil#unfollow'
+
 
   as :user do
     get '/login', to: 'users/sessions#new'
