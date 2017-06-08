@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   get 'perfil/show'
 
   devise_for :users, :controllers => {registrations: 'users/registrations'}
-  resources :users, only: [ :show, :edit, :update, ]
+  resources :users, only: [ :show, :edit, :update, :rate_up]
   resources :recipes
 
   root to: "home#index"
@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   get '/receita/editar/:recipe_id' => 'recipe#edit'
   post '/receita/' => 'recipe#save_new'
   post '/receita/:recipe_id' => 'recipe#save_old'
+  post '/receita/rate_up/:recipe_id', to: 'perfil#rate_up'
   get '/buscar' => 'search#index'
   post '/buscar' => 'search#show_results'
   get '/user/:username', to: 'perfil#show'

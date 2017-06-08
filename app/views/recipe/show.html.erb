@@ -1,2 +1,16 @@
-<h1>Recipe#show</h1>
-<p>Find me in app/views/recipe/show.html.erb</p>
+<center><div class="recipe_name">
+	<h2><%= @recipe_title %></h2>
+  	<b><p>Id:</b> <%= @recipe_id %></p></b>
+  	<b><p>Como fazer:</b> <%= @recipe_description %></p></b>
+  	<b><p>Rating:</b> <%= @recipe_rate %></p></b>
+
+    <% if current_user != nil && @recipe_user != current_user %>
+      <form action="/receita/rate_up/<%= @recipe_id %>" method="post">
+      <button type="submit" class="btn btn-success btn-sm">Rate</button>
+    
+    <% elsif @recipe_user == current_user %>
+      <p>Usuário dono da receita</p>
+
+    <% else %>
+      <p>Usuário nao logado</p>
+  <% end %>

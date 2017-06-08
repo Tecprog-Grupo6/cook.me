@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170528073431) do
+ActiveRecord::Schema.define(version: 20170601051832) do
 
   create_table "follow_associations", force: :cascade do |t|
     t.integer  "follower_id"
@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 20170528073431) do
     t.integer  "served_people"
     t.integer  "prepare_time"
     t.integer  "user_id"
+    t.integer  "rate"
     t.index ["user_id"], name: "index_recipes_on_user_id"
   end
 
@@ -55,7 +56,9 @@ ActiveRecord::Schema.define(version: 20170528073431) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
+    t.integer  "recipe_id"
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["recipe_id"], name: "index_users_on_recipe_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 

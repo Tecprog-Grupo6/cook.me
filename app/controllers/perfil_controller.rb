@@ -14,7 +14,7 @@ class PerfilController < ApplicationController
 
   def follow
     @user_to_follow = User.find_by( username: params[:username] )
-    @current_user = User.find_by( username: params[:current_user_username] )
+    @current_user = User.find( username: params[:current_user_username] )
 
     @current_user.follow( @user_to_follow )
 
@@ -32,5 +32,17 @@ class PerfilController < ApplicationController
     result = redirect_to "/user/" + @user_to_unfollow.username
 
     return result
+  end
+
+  def rate_up
+
+    @current_user = current_user
+    @profile_user = User.find_by( username: params[:username] )
+
+    @recipe_to_rate = Recipe.find(params[:recipe_id])
+    @recipe_to_rate.rate += 1
+    @recipe_to_rate.update_attributes(:rate => @recipe_to_rate.rate)
+    result = redirect_to "/receita/visualizar/" + @recipe_to_rate.id.to_s
+  
   end
 end
