@@ -1,22 +1,22 @@
 <center>
   <div class="col-md-offset-4 col-md-4">
     <div class="row">
-      <h3><%= @recipe_posted[:title]%></h3>
+      <h3><%= @to_show_recipe[:title]%></h3>
     </div>
 
     <div class="row">
       <div class="col-md-offset-2 col-md-8">
-        <%= image_tag(@recipe_posted.image_one.url, class:"img-responsive") %>
+        <%= image_tag(@to_show_recipe.image_one.url, class:"img-responsive") %>
       </div>
     </div>
     <div class="row">
-      <p>Serve: <%= @recipe_posted[:served_people]%></p>
+      <p>Serve: <%= @to_show_recipe[:served_people]%></p>
     </div>
     <div class="row">
-      <p>Tempo de preparo: <%= @recipe_posted[:prepare_time]%></p>
+      <p>Tempo de preparo: <%= @to_show_recipe[:prepare_time]%></p>
     </div>
     <div class="row">
-      <p>Modo de preparo: <%= @recipe_posted[:text]%></p>
+      <p>Modo de preparo: <%= @to_show_recipe[:text]%></p>
     </div>
     <div class="row">
       <%= form_for :recipes, url: "/receita/deletar/#{params[:recipe_id]}" do |f| %>
