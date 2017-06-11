@@ -4,8 +4,7 @@
 
 class RecipeController < ApplicationController
 
-  before_action :authenticate_user!
-
+  before_action :authenticate_user!, :except => [:show]
 
   #receives params[:recipe_id] from the url
   #redirects to page of the recipe whose id matches param recipe_id
@@ -13,13 +12,18 @@ class RecipeController < ApplicationController
 
     begin
       @to_show_recipe = Recipe.find(params[:recipe_id])
+      if user_signed_in? && @to_show_recipe.user_id == current_user.id
+        logger.debug " [RECIPE#SHOW] Recipe with id: " + params[:recipe_id] + " belongs to current user"
+        @is_owner = true
+      else
+        @is_owner = false
+      end
       result = render template: "recipe/show.html.erb"
       logger.debug " [RECIPE#SHOW] Recipe with id: " + params[:recipe_id] + " successfully found"
     rescue ActiveRecord::RecordNotFound
       result = render template: "recipe/recipe_not_found.html.erb"
       logger.debug " [RECIPE#SHOW] URL param recipe_id: " + params[:recipe_id] + ", didn't match an existing recipe id"
     end
-    logger.debug " Inspect show if the recipe WAS or WASN'T found"
     return result
 
   end
@@ -35,8 +39,8 @@ class RecipeController < ApplicationController
                                           :served_people => params[:recipes][:served_people],
                                           :prepare_time => params[:recipes][:prepare_time],
                                           :image_one => params[:recipes][:image_one])
-    logger.debug " Inspect RECIPE SAVED"
     return save(@recipe)
+
   end
 
   def save_old

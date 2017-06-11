@@ -40,6 +40,8 @@ class RecipeControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "recipe create page should responds" do
+    post "/perfil/criar", :params => { :user =>  @user_1 }
+
     get "/receita/criar"
     assert_response(:success, "Recipe create page doesn't respond")
   end
