@@ -9,7 +9,11 @@ class RecipeController < ApplicationController
   def show
 
     # Searching a recipe
-    @recipe_posted = Recipe.find(params[:recipe_id])
+    begin
+      @recipe_posted = Recipe.find(params[:recipe_id])
+    rescue
+      @recipe_posted = nil
+    end
     logger.debug " Inspect a valid found recipe"
 
     if @recipe_posted != nil
@@ -19,8 +23,8 @@ class RecipeController < ApplicationController
       result = render template: "recipe/recipe_not_found.html.erb"
       logger.debug " recipe NOT FOUND!"
     end
-    return result
     logger.debug " Inspect show if the recipe WAS or WASN'T found"
+    return result
   end
 
   def new
@@ -34,9 +38,8 @@ class RecipeController < ApplicationController
                                           :served_people => params[:recipes][:served_people],
                                           :prepare_time => params[:recipes][:prepare_time],
                                           :image_one => params[:recipes][:image_one])
-    return save(@recipe)
     logger.debug " Inspect RECIPE SAVED"
-
+    return save(@recipe)
   end
 
   def save_old
