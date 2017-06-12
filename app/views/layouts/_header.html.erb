@@ -29,7 +29,7 @@
       <% if user_signed_in? %>
         <li>
           <li><a href="/perfil/editar"><span class="glyphicon glyphicon-edit"></span> Editar Perfil</a></li>
-          <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Deslogar</a></li>
+          <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Deslogar (<%= current_user.first_name %> <%= current_user.last_name %>)</a></li>
         </li>
       <% else %>
         <li>
