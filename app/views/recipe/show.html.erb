@@ -2,8 +2,8 @@
   <div class="col-md-10 col-md-offset-1">
     <div class="well well-sm">
       <div class="row">
-        <div class="col-md-10 col-md-offset-1">
-          <h3>Nome: <%= @recipe_title %></a></h3>
+        <div class="col-md-10 col-md-offset-4">
+          <h3>Nome: <%= @recipe_title %></h3>
         </div>
       </div>
       <div class="row">
@@ -11,7 +11,7 @@
           <img src="http://runawayapricot.com/wp-content/uploads/2014/09/placeholder.jpg"
             class="img-rounded img-responsive" alt="HTML5 Icon" style="width:75%;height:75%;"/>
         </div>
-        <div class="col-md-5 info-content">
+        <div class="col-md-6 nfo-content">
             <br>
             <h4> Descrição da Receita: <%= @recipe_description %></h4>
             <br>
@@ -31,8 +31,8 @@
                 <br>
               </div>
             </div>
-            <div class="row">
 
+            <div class="row">
               <h2>Comentários</h2>
                 <% @recipe_posted.comments.each do |comment| %>
                 <div class="well well-sm">
@@ -40,17 +40,16 @@
                     <b>Autor:</b>
                     <%= comment.commenter %>
                   </p>
-
                   <p>
                     <b>Comentário:</b>
                     <%= comment.body %>
                   </p>
                   <div class="row">
                     <div class="col-md-6">
-                      <button>Deletar Comentário</button>
+                      <button class="btn btn-default submit">Deletar Comentário</button>
                     </div>
                     <div class="col-md-6">
-                      <button>Editar Comentário</button>
+                      <button class="btn btn-default submit">Editar Comentário</button>
                     </div>
                   </div>
                 </div>
@@ -71,8 +70,8 @@
                     <%= f.text_area :body %>
                   </div>
                   <div class="row">
-                    <div class="col-md-6">
-                      <button>   Comentar</button>
+                    <div class="col-md-12">
+                      <button class="btn btn-default submit">   Comentar</button>
                     </div>
                   </div>
                 <% end %>
