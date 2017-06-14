@@ -31,9 +31,11 @@
                 <br>
               </div>
             </div>
-            <div>
+            <div class="row">
+
               <h2>Comentários</h2>
                 <% @recipe_posted.comments.each do |comment| %>
+                <div class="well well-sm">
                   <p>
                     <b>Autor:</b>
                     <%= comment.commenter %>
@@ -43,31 +45,38 @@
                     <b>Comentário:</b>
                     <%= comment.body %>
                   </p>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <button>Deletar Comentário</button>
+                    </div>
+                    <div class="col-md-6">
+                      <button>Editar Comentário</button>
+                    </div>
+                  </div>
+                </div>
                 <% end %>
             </div>
 
-            <div>
-              <div class="col-md-11">
-                <div class="form-group">
-                  <label for ="comment"> Faça um Comentário! </label>
-                  <%= form_for([@recipe_posted, @recipe_posted.comments.build]) do |f| %>
-                    <div class="field">
-                      <%= f.label :commenter %><br />
-                      <%= f.text_field :commenter %>
+            <div class="row">
+              <h2>Faça um Comentário! </h2><br>
+                <div class="well well-sm">
+                <%= form_for([@recipe_posted, @recipe_posted.comments.build]) do |f| %>
+                  <div class="field">
+                    <%= f.label :commenter %><br>
+                    <%= f.text_field :commenter %>
+                  </div>
+                  <br>
+                  <div class="field">
+                    <%= f.label :body %><br />
+                    <%= f.text_area :body %>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <button>   Comentar</button>
                     </div>
-                    <div class="field">
-                      <%= f.label :body %><br />
-                      <%= f.text_area :body %>
-                    </div>
-                    <div class="actions">
-                      <%= f.submit %>
-                    </div>
-                  <% end %>
-                </div>
-                <div>
-                  <button type="submit" class="btn btn-default submit"><i class="fa fa-paper-plane" aria-hidden="true"></i>  Comentar</button>
-                </div>
-            </div>
+                  </div>
+                <% end %>
+              </div>
             </div>
         </div>
       </div>
