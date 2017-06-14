@@ -32,10 +32,37 @@
               </div>
             </div>
             <div>
+              <h2>Comentários</h2>
+                <% @recipe_posted.comments.each do |comment| %>
+                  <p>
+                    <b>Autor:</b>
+                    <%= comment.commenter %>
+                  </p>
+
+                  <p>
+                    <b>Comentário:</b>
+                    <%= comment.body %>
+                  </p>
+                <% end %>
+            </div>
+
+            <div>
               <div class="col-md-11">
                 <div class="form-group">
-                  <label for ="comment"> Comentário</label>
-                  <textarea  class="form-control" rows="8" placeholder="Escreva um comentário aqui" name="comment" required></textarea>
+                  <label for ="comment"> Faça um Comentário! </label>
+                  <%= form_for([@recipe_posted, @recipe_posted.comments.build]) do |f| %>
+                    <div class="field">
+                      <%= f.label :commenter %><br />
+                      <%= f.text_field :commenter %>
+                    </div>
+                    <div class="field">
+                      <%= f.label :body %><br />
+                      <%= f.text_area :body %>
+                    </div>
+                    <div class="actions">
+                      <%= f.submit %>
+                    </div>
+                  <% end %>
                 </div>
                 <div>
                   <button type="submit" class="btn btn-default submit"><i class="fa fa-paper-plane" aria-hidden="true"></i>  Comentar</button>

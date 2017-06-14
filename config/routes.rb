@@ -2,11 +2,13 @@ Rails.application.routes.draw do
 
   devise_for :users, :controllers => {registrations: 'users/registrations'}
   resources :users, only: [ :show, :edit, :update, ]
-  resources :recipes
+  resources :recipes do
+    resources :comments
+  end
 
   root to: "feed#show"
   get '/' => 'feed#show'
-  get '/receita/visualizar/:recipe_id' => 'recipe#show'
+  get '/receita/visualizar/:recipe_id' => 'recipe#show', as: :show_recipe
   get '/receita/criar' => 'recipe#new'
   get '/receita/editar/:recipe_id' => 'recipe#edit'
   get '/receita/comentar/' => 'recipe#comentar'
