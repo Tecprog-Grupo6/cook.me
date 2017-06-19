@@ -45,15 +45,15 @@
                     <%= comment.body %>
                   </p>
                   <div class="row">
-                    <p>
-                    <button class="btn btn-default submit" <%= link_to 'Deletar Comentário', [comment.recipe, comment],
-                            method: :delete,
-                            data: { confirm: 'Are you sure?' } %>
-                    </button>
-                    </p>
-
-                    <div class="col-md-6">
-                      <button class="btn btn-default submit">Editar Comentário</button>
+                    <div class="col-md-6 col-md-offset-6">
+                      <button>
+                        <%= link_to 'Excluir Comentário', [comment.recipe, comment],
+                                     method: :delete,
+                                     data: { confirm: 'Are you sure?' } %>
+                      </button>
+                      <button>
+                        <%= link_to 'Editar Comentário' %>
+                      </button>
                     </div>
                   </div>
                 </div>
