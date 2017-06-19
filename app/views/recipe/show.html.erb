@@ -45,9 +45,13 @@
                     <%= comment.body %>
                   </p>
                   <div class="row">
-                    <div class="col-md-6">
-                      <button class="btn btn-default submit">Deletar Comentário</button>
-                    </div>
+                    <p>
+                    <button class="btn btn-default submit" <%= link_to 'Deletar Comentário', [comment.recipe, comment],
+                            method: :delete,
+                            data: { confirm: 'Are you sure?' } %>
+                    </button>
+                    </p>
+
                     <div class="col-md-6">
                       <button class="btn btn-default submit">Editar Comentário</button>
                     </div>
@@ -59,22 +63,7 @@
             <div class="row">
               <h2>Faça um Comentário! </h2><br>
                 <div class="well well-sm">
-                <%= form_for([@recipe_posted, @recipe_posted.comments.build]) do |f| %>
-                  <div class="field">
-                    <%= f.label :commenter %><br>
-                    <%= f.text_field :commenter %>
-                  </div>
-                  <br>
-                  <div class="field">
-                    <%= f.label :body %><br />
-                    <%= f.text_area :body %>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-12">
-                      <button class="btn btn-default submit">   Comentar</button>
-                    </div>
-                  </div>
-                <% end %>
+                <%= render 'comments/form' %>
               </div>
             </div>
         </div>

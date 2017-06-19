@@ -9,9 +9,13 @@ class CommentsController < ApplicationController
     #TODO
   end
 
-  def delete
-    #TODO
-  end
+  def destroy
+      @recipe = Recipe.find(params[:recipe_id])
+      @comment = @recipe.comments.find(params[:id])
+      @comment.destroy
+      redirect_to show_recipe_path(@recipe)
+    end
+
 
   private
   def comments_params
