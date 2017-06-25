@@ -1,2 +1,88 @@
-<h1>Home#index</h1>
-  <p><a href="/perfil/editar">Edit User's Information</a></p>
+<!DOCTYPE html>
+<title>Cook.me | Home</title>
+<div class="container text-center">
+	<div class="row">
+		<div class="col-sm-3 well">
+			<% if user_signed_in? %>
+			<div class="thumbnail">
+				<div class="profile-userpic">
+        	<%= image_tag(@profile_user.avatar.url, class:"img-responsive", alt:"") %>
+        </div>
+        <div class="profile-usertitle">
+          <div class="profile-usertitle-name">
+            <p><a href="/perfil"><%= @profile_user.first_name %> <%= @profile_user.last_name %></a></p>
+          </div>
+          <div class="profile-usertitle-job">
+            <p>Aprendiz</p>
+          </div>
+        </div>
+      </div>
+			<% else %>
+				<div class="well">
+					<p><strong>Realize o login ou registre-se para participar!</strong></p>
+					<div class="thumbnail">
+						<p>
+							<a href="/perfil/criar"><span class="glyphicon glyphicon-user text-center"></span> Criar Conta</a>
+						</p>
+						<p>
+							<a href="/login"><span class="glyphicon glyphicon-log-in text-center"></span> Efetuar Login</a>
+						</p>
+					</div>
+				</div>
+			<% end %>
+			<div class="thumbnail">
+				<p>Interesses</p>
+				<p>
+					<span class="label label-default">Novas Receitas</span>
+					<span class="label label-primary">Pratos Quentes</span>
+					<span class="label label-success">Pratos Frios</span>
+					<span class="label label-info">Churrasco</span>
+					<span class="label label-warning">Almoço</span>
+					<span class="label label-danger">Brunch</span>
+				</p>
+			</div>
+			<div class="alert alert-success fade in">
+				<a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+				<p><strong>Ei, aspirante a mestre-cuca!</strong></p>
+				Descobriu uma receita nova? A compartilhe conosco!
+			</div>
+			<!--<p><a href="#">Link</a></p>
+			<p><a href="#">Link</a></p>
+			<p><a href="#">Link</a></p>-->
+		</div>
+		<div class="col-sm-7">
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="panel panel-default">
+						<div class="panel-body">
+							<div>
+								<!--<img src="logo.jpg" class="img-circle" height="175" width="175" alt="Logo">-->
+								<h1>Bem vindo ao Cook.me!</h1>
+								<h3>A sua rede social de culinária!</h3>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-2 well">
+			<% if user_signed_in? %>
+				<div class="well">
+					<p>
+						<a href="#"><span class="glyphicon glyphicon-star text-center"></span> Favoritos</a>
+					</p>
+				</div>
+			<% end %>
+			<div>
+        <p><img src="http://lorempixel.com/100/150/food/ANUNCIO/" height="100" width="150" alt="Foto Receita"></p>
+      </div>
+      <div>
+        <p><img src="http://lorempixel.com/100/150/technics/ANUNCIO/" height="100" width="150" alt="Foto Receita"></p>
+      </div>
+      <div>
+        <p><img src="http://lorempixel.com/100/150/sports/ANUNCIO/" height="100" width="150" alt="Foto Receita"></p>
+      </div>
+			<small>Links patrocinados</small>
+		</div>
+	</div>
+</div>

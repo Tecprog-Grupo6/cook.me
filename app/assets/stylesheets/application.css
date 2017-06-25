@@ -10,6 +10,35 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require_tree .
  *= require_self
+ *= require_tree
  */
+
+* {
+	margin: 0;
+}
+
+html, body {
+  background: linear-gradient(to left, #DE1C4B, #DE3C4B);
+  color : #000;
+  height: 100%;
+}
+
+#wrap {
+  min-height: 100%;
+}
+
+#main {
+  overflow:auto;
+  padding-bottom:75px; /* this needs to be bigger than footer height*/
+}
+
+.footer {
+  background-color: #000;
+  color: white;
+  position: relative;
+  margin-top: -55px; /* negative value of footer height */
+  height: 55px;
+  clear:both;
+  padding-top:20px;
+}

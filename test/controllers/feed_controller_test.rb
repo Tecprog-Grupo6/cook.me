@@ -46,7 +46,7 @@ class FeedControllerTest < ActionDispatch::IntegrationTest
     get "/"
 
     assert_response(:success, "Feed page is not responding")
-    assert_select("h3 a", User.find_by(:email => 'johndoe@email.com').recipes.find_by(:title => 'Best recipe').title, "Recipe wasn't shown on feed page")
+    assert_select("p", User.find_by(:email => 'johndoe@email.com').recipes.find_by(:title => 'Best recipe').title, "Recipe wasn't shown on feed page")
   end
 
   test "should responds without recipes" do

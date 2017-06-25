@@ -4,11 +4,18 @@ A component of Metronic Theme - #1 Selling Bootstrap 3 Admin Theme in Themefores
 Licensed under MIT
 -->
 
+<style>
+  .white-background {
+    background-color: white;
+  }
+</style>
+
 <div class="container">
-    <div class="row profile">
-		<div class="col-md-3">
-			<div class="profile-sidebar">
+    <div class="row">
+		<div class="col-md-3 well">
+			<div class="well white-background">
 				<!-- SIDEBAR USERPIC -->
+        <br>
 				<div class="profile-userpic">
 					<%= image_tag(@profile_user.avatar.url, class:"img-responsive", alt:"") %>
 				</div>
@@ -19,7 +26,7 @@ Licensed under MIT
 						<%= @profile_user.first_name %> <%= @profile_user.last_name %>
 					</div>
 					<div class="profile-usertitle-job">
-						Mestre-cuca
+						<p>Aprendiz</p>
 					</div>
 				</div>
 				<!-- END SIDEBAR USER TITLE -->
@@ -45,25 +52,26 @@ Licensed under MIT
         <% end %>
 				<!-- END SIDEBAR BUTTONS -->
 				<!-- SIDEBAR MENU -->
-				<div class="profile-usermenu">
-					<ul class="nav">
-						<li>
-							<a href="#estatisticas">
-							<i class="glyphicon glyphicon-stats"></i>
-							Estatísticas </a>
-						</li>
-						<li>
-							<a href="#cookbook">
-							<i class="glyphicon glyphicon-book"></i>
-							Cookbook </a>
-						</li>
-					</ul>
-				</div>
+
+      </div>
+      <div class="well white-background">
+				<ul class="nav">
+					<li>
+						<a href="#estatisticas">
+						<i class="glyphicon glyphicon-stats"></i>
+						Estatísticas </a>
+					</li>
+					<li>
+						<a href="#cookbook">
+						<i class="glyphicon glyphicon-book"></i>
+						Cookbook </a>
+					</li>
+				</ul>
 				<!-- END MENU -->
 			</div>
 		</div>
 		<div class="col-md-9">
-      <div class="profile-statistics" id="estatisticas">
+      <div class="well" id="estatisticas">
         <div class="title-session">Estatísticas</div>
         <div class="row">
           <div class="subtitle-session">Seguidores (total: <%= @profile_user.followers.count %>)</div><br>
@@ -72,7 +80,7 @@ Licensed under MIT
               <div class="col-md-2">
                 <a href="/user/<%= follower.username %>">
                   <center>
-                    <%= image_tag(follower.avatar.url(:thumb)) %><br>
+                    <%= image_tag(follower.avatar.url(:thumb), class:"img-responsive") %><br>
                     <%= follower.first_name %> <%= follower.last_name %>
                   </center>
                 </a>
@@ -92,7 +100,7 @@ Licensed under MIT
               <div class="col-md-2">
                 <a href="/user/<%= followed.username %>">
                   <center>
-                    <%= image_tag(followed.avatar.url(:thumb)) %><br>
+                    <%= image_tag(followed.avatar.url(:thumb), class:"img-responsive") %><br>
                     <%= followed.first_name %> <%= followed.last_name %>
                   </center>
                 </a>
@@ -106,23 +114,28 @@ Licensed under MIT
         </div>
       </div>
       <br>
-      <div class="profile-cookbook" id="cookbook">
+      <div class="well" id="cookbook">
         <div class="title-session">Cookbook</div>
-        <% if !@profile_user.recipes.empty? %>
-          <ul>
-          <% @profile_user.recipes.each do |recipe| %>
-            <li><%= recipe.title %> </li>
-          </ul>
-
-          <% end %>
-        <% else %>
-          <div class="col-md-8">
-            <p>Este usuário ainda não tem receitas</p>
+        <div class="row">
+          <div class="subtitle-session">Receitas (total: <%= @profile_user.recipes.count %>)</div><br>
+          <% if !@profile_user.recipes.empty? %>
+            <% @profile_user.recipes.each do |recipe| %>
+              <div class="col-md-2">
+                <a href="/receita/visualizar/<%= recipe.id =%>">
+                  <center>
+                    <%= image_tag(recipe.image_one.url(:thumb), class:"img-responsive") %><br>
+                    <%= recipe.title %>
+                  </center>
+                </a>
+              </div>
+            <% end %>
+          <% else %>
+            <div class="col-md-8">
+              <p>Este usuário ainda não possui receitas!</p>
             </div>
           <% end %>
+        </div>
       </div>
 		</div>
 	</div>
 </div>
-<br>
-<br>

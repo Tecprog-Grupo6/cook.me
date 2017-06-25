@@ -35,17 +35,17 @@ class SearchControllerTest < ActionDispatch::IntegrationTest
 
   test "post should responds" do
     post "/buscar", :params => {:query => "John"}
-    assert_response(:success, "No response")
+    assert_response(:redirect, "No redirect")
   end
 
   test "should return results" do
-    post "/buscar", :params => {:query => @user_1[:first_name]}
+    get "/buscar/#{@user_1[:first_name]}"
     assert_select("h4", "Nome: #{@user_1[:first_name]} #{@user_1[:last_name]}", "User wasn't found")
   end
 
   test "shouldn't return results" do
-    post "/buscar", :params => {:query => ""}
-    assert_select("a", { count: 0, text: "Nome: #{@user_1[:first_name]} #{@user_1[:last_name]}" }, "User was found")
+    get "/buscar/#{@user_1[:first_name]}"
+    assert_select("body", { count: 0, text: "Nome: #{@user_1[:first_name]} #{@user_1[:last_name]}" }, "User was found")
   end
 
 end

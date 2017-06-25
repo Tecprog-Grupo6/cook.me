@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt">
   <head>
-
-    <title>Cook.me</title>
-
     <%= csrf_meta_tags %>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
@@ -20,20 +20,19 @@
 
   </head>
 
-  <body>
-    <style>
-      body {
-        background: linear-gradient(to left, #3a6186 , #89253e);
-        color : #000;
-      }
-    </style>
-    <!-- Header -->
-     <div class="header">
-       <%= render "/layouts/header" %>
-     </div>
-
-    <%= yield %>
-
+<body>
+    <div id="wrap">
+      <div id="main" class="clear-top">
+        <!-- Header -->
+        <div class="header">
+          <%= render "/layouts/header" %>
+        </div>
+        <!-- Content -->
+        <%= yield %>
+      </div>
+    </div>
+    <!-- Footer -->
+    <footer class="footer container-fluid text-center">
+      <p>© Copyright 2017 Cook.me - All Rights Reserved</p>
+    </footer>
   </body>
-
-</html>

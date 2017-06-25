@@ -1,12 +1,12 @@
 <style>
   .pre-scrollable {
-    min-height: 440px;
-    max-height: 440px;
+    min-height: 320px;
+    max-height: 320px;
     overflow-y: scroll;
   }
 
   .buttons_padding {
-    padding-top: 440px;
+    padding-top: 320px;
   }
 </style>
 
@@ -14,7 +14,7 @@
   window.location.href = '#pe';
 </script>
 
-<div class="col-md-offset-1 col-md-10">
+<div class="col-md-offset-1 col-md-10 well">
 
   <div class="row text-center">
     <h2>Chat com <%= User.find_by(:username => params[:username]).first_name %> <%= User.find_by(:username => params[:username]).last_name %></h2>

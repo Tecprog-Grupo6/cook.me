@@ -1,95 +1,79 @@
-<div class="row">
-  <div class="col-md-offset-3">
-
-    <h2>Criar Conta</h2>
-
-    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+<!DOCTYPE html>
+<title>Cook.me | Criar Conta</title>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-10 col-md-offset-1">
+      <center>
+        <div class="section-content">
+      		<h1 class="content-header">Criar <span class="yellow"> Conta</span></h1>
+      	</div>
+      </center>
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
       <%= devise_error_messages! %>
-
-        <div class="row">
-          <div class="col-md-3">
-            <div class="field">
-              <%= f.label :"Nome" %><br />
-              <%= f.text_field :first_name, autofocus: true, :placeholder => "John Doe" %>
-            </div>
+      <br>
+      <div class="row">
+        <div class="col-md-6 form-line">
+          <div class="form-group">
+            <%= f.label :"Nome" %><br>
+            <%= f.text_field :first_name, autofocus: true, class: "form-control", :placeholder => "John" %>
           </div>
-
-          <div class="col-md-3">
-            <div class="field">
-              <%= f.label :"Sobrenome" %><br />
-              <%= f.text_field :last_name, autofocus: "off", :placeholder => "Smith" %>
-            </div>
+          <div class="form-group">
+            <%= f.label :"Sobrenome" %><br>
+            <%= f.text_field :last_name, autofocus: "off", class: "form-control", :placeholder => "Doe" %>
           </div>
-        </div>
-
-        <div class="row">
+          <div class="form-group">
+            <%= f.label :"Email" %><br>
+            <%= f.email_field :email, autofocus: "off", class: "form-control", :placeholder => "exemplo@email.com" %>
+          </div>
           <div class="col-md-6">
-            <div class="field">
-              <%= f.label :"E-mail" %><br />
-              <%= f.email_field :email, autofocus: "off", :placeholder => "email@example.com" %>
+            <div class="form-group">
+              <%= f.label :"Sexo" %><br>
+              <%= f.select :gender, [['Masculino', "Masculino"], ['Feminino', "Feminino"]], class: "form-control", :placeholder => "Masculino" %>
             </div>
           </div>
-        </div>
-
-        <div class="row">
-          <div class="col-md-3">
-            <div class="field">
-              <%= f.label :"Data de Nascimento" %><br />
-              <%= f.date_field :birthday, :placeholder => "21/02/1994" %>
-            </div>
-          </div>
-
-          <div class="row">
-          <div class="col-md-3">
-            <div class="field">
-              <%= f.label :"Sexo" %><br />
-              <%= f.text_field :gender, autofocus: true, :placeholder => "Masculino" %>
-            </div>
-          </div>
-
-        <div class="row">
-          <div class="col-md-3">
-            <div class="field">
-              <%= f.label :"Senha" %>
-              <% if @minimum_password_length %>
-              <em>(mínimo de <%= @minimum_password_length %> caracteres)</em>
-              <% end %><br />
-              <%= f.password_field :password, autocomplete: "off", :placeholder => "******" %>
-            </div>
-          </div>
-
-          <div class="col-md-3">
-            <div class="field">
-              <%= f.label :"Confirmar senha" %><br />
-              <%= f.password_field :password_confirmation, autocomplete: "off", :placeholder => "******" %>
-            </div>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-md-3">
-            <div class="field">
-              <%= f.label :"Nome de usuário" %><br />
-              <%= f.text_field :username, autofocus: "off", :placeholder => "john_doe" %>
-            </div>
-          </div>
-
-          <div class="col-md-3">
-            <div class="field">
-              <%= f.label :"Foto" %><br />
+          <div class="col-md-6">
+            <div class="form-group">
+              <%= f.label :"Foto" %><br>
               <%= f.file_field :avatar %>
             </div>
           </div>
         </div>
-
-        <br>
-
-        <div class="actions">
-          <%= f.submit "Confirmar" %>
+        <div class="col-md-6">
+          <div class="form-group">
+            <%= f.label :"Data de Nascimento" %><br>
+            <%= f.date_field :birthday, class: "form-control", :placeholder => "21/02/1994" %>
+          </div>
+          <div class="form-group">
+            <%= f.label :"Senha" %>
+            <% if @minimum_password_length %>
+              <em>(mínimo de <%= @minimum_password_length %> caracteres)</em>
+            <% end %><br>
+            <%= f.password_field :password, autocomplete: "off", class: "form-control", :placeholder => "********" %>
+          </div>
+          <div class="form-group">
+            <%= f.label :"Confirmar senha" %><br>
+            <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control", :placeholder => "********" %>
+          </div>
+          <div class="form-group">
+            <%= f.label :"Nome de usuário" %><br>
+            <%= f.text_field :username, autofocus: "off", class: "form-control", :placeholder => "john_doe" %>
+          </div>
         </div>
-    <% end %>
-
+      </div>
+      <br>
+      <div class="row">
+        <!--<div class="col-md-6">
+          <%= f.label :"Cancelar minha conta" %><br>
+          <%= button_to "Cancelar minha conta", registration_path(resource_name), data: { confirm: "Você tem certeza?" }, method: :delete, class: "btn btn-default" %>
+        </div>
+        <br>-->
+        <div class="col-md-12">
+          <div class="actions">
+            <%= f.submit "Confirmar Registro", class: "btn btn-default submit" %>
+          </div>
+        </div>
+      </div>
+      <% end %>
+    </div>
   </div>
 </div>
-
-<br><%= render "users/shared/links" %>

@@ -1,8 +1,14 @@
 class SearchController < ApplicationController
+
   def index
   end
 
-  def show_results
+  def get_query
+    redirect_to "/buscar/#{params[:query]}"
+  end
+
+  def get_results
+
     @query = params[:query]
 
     if !(@query.empty?)
@@ -13,9 +19,9 @@ class SearchController < ApplicationController
       @query_recipe = nil
     end
 
-
     result = render template: "search/index.html.erb"
     return result
 
   end
+
 end
