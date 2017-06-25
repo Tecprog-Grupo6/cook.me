@@ -10,10 +10,6 @@ class RecipeController < ApplicationController
   #redirects to page of the recipe whose id matches param recipe_id
   def show
 
-    # Searching a recipe
-    @recipe_posted = Recipe.find(params[:recipe_id])
-    logger.debug " Inspect a valid found recipe"
-
     begin
       @to_show_recipe = Recipe.find(params[:recipe_id])
       if user_signed_in? && @to_show_recipe.user_id == current_user.id

@@ -1,15 +1,23 @@
 <!DOCTYPE html>
+
+<style>
+  .white-background {
+    background-color: white;
+  }
+</style>
+
 <title>Cook.me | Feed</title>
 <div class="container text-center">
   <div class="row">
     <div class="col-sm-3 well">
-      <div class="thumbnail">
+      <div class="well white-background">
+        <br>
         <div class="profile-userpic">
-          <%= image_tag(@profile_user.avatar.url, class:"img-responsive", alt:"") %>
+          <a href="/user/<%= @profile_user.username %>"><%= image_tag(@profile_user.avatar.url, class:"img-responsive", alt:"") %></a>
         </div>
         <div class="profile-usertitle">
           <div class="profile-usertitle-name">
-            <p><a href="/perfil"><%= @profile_user.first_name %> <%= @profile_user.last_name %></a></p>
+            <p><a href="/user/<%= @profile_user.username %>"><%= @profile_user.first_name %> <%= @profile_user.last_name %></a></p>
           </div>
           <div class="profile-usertitle-job">
             <p>Aprendiz</p>
@@ -17,7 +25,7 @@
         </div>
       </div>
       <div class="thumbnail">
-        <p><a href="#">Interesses</a></p>
+        <p>Interesses</p>
         <p>
           <span class="label label-default">Novas Receitas</span>
           <span class="label label-primary">Pratos Quentes</span>
@@ -32,9 +40,9 @@
         <p><strong>Ei, aspirante a mestre-cuca!</strong></p>
         Descobriu uma receita nova? Compartilhe com a gente!
       </div>
+      <!-- <p><a href="#">Link</a></p>
       <p><a href="#">Link</a></p>
-      <p><a href="#">Link</a></p>
-      <p><a href="#">Link</a></p>
+      <p><a href="#">Link</a></p> -->
     </div>
     <div class="col-sm-7">
       <div class="row">
@@ -42,41 +50,26 @@
           <% if @recipes_list != nil %>
             <% @recipes_list.each do |recipe| %>
 
-              <div class="col-sm-3">
-                <div class="well">
-                  <img src="http://runawayapricot.com/wp-content/uploads/2014/09/placeholder.jpg"zz class="img-circle" height="55" width="55" alt="Foto Receita">
-                  <p><a href="/receita/visualizar/<%= recipe.id =%>"><%= recipe[:title] =%></a></p>
+              <a href="/receita/visualizar/<%= recipe.id =%>">
+                <div class="col-sm-3">
+                  <div class="well">
+                    <%= image_tag(recipe.image_one.url, class:"img-responsive") %>
+                    <p><%= recipe[:title] =%></p>
+                  </div>
                 </div>
-              </div>
+              </a>
               <div class="col-sm-9">
                 <div class="well">
-                  <p>Uma nova receita palmito na brasa que vai te enlouquecer! Temperado com orégano e alho, esse petisco vai ser a nova melhor companhia da sua cervejinha!</p>
+                  <p><%= recipe.text =%></p>
                   <p>Serve: <%= recipe.served_people =%> pessoas | Tempo de preparo: <%= recipe.prepare_time %> minutos</p>
-                  <p> por <%= recipe.user.first_name %> <%=recipe.user.last_name %> em  
-                  <% if(recipe.created_at.day > 10) %>
-                    <%= recipe.created_at.day %>
-                  <% else %>
-                    0<%= recipe.created_at.day %>
-                  <% end %>/<% if(recipe.created_at.month > 10) %>
-                    <%= recipe.created_at.month %>
-                  <% else %>
-                  0<%= recipe.created_at.month %>
-                  <% end %>/<%= recipe.created_at.year %>
-                  </p>
-                  <div class="yellow">
-                    <i class="glyphicon glyphicon-star"></i>
-                    <i class="glyphicon glyphicon-star"></i>
-                    <i class="glyphicon glyphicon-star"></i>
-                    <i class="glyphicon glyphicon-star-empty"></i>
-                    <i class="glyphicon glyphicon-star-empty"></i>
-                  </div>
-                  <button href="#" type="button" class="btn btn-default btn-sm">
+                  <p>por <%= recipe.user.first_name %> <%=recipe.user.last_name %> em <%= recipe.created_at.strftime(" %d/%m/%Y às %I:%M%p") %></p>
+                  <a href="/receita/visualizar/<%= recipe.id =%>" type="button" class="btn btn-default btn-sm">
                   Ver Receita
-                  </button>
-                  <button href="#" type="button" class="btn btn-default btn-sm">
+                  </a>
+                  <a href="/user/<%= recipe.user.username =%>" type="button" class="btn btn-default btn-sm">
                   Chefe
                   <!-- <span class="glyphicon glyphicon-thumbs-down"></span> Dislike -->
-                  </button>
+                  </a>
                 </div>
               </div>
             <% end %>
@@ -102,17 +95,16 @@
       </div>
     </div>
     <div class="col-sm-2 well">
-      <div class="well">
-        <p>
-          <a href="#"><span class="glyphicon glyphicon-star text-center"></span> Favoritos</a>
-        </p>
+      <div>
+        <p><img src="http://lorempixel.com/100/150/food/ANUNCIO/" height="100" width="150" alt="Foto Receita"></p>
       </div>
-      <div class="well">
-        <p>Anúncios</p>
+      <div>
+        <p><img src="http://lorempixel.com/100/150/technics/ANUNCIO/" height="100" width="150" alt="Foto Receita"></p>
       </div>
-      <div class="well">
-        <p>Anúncios</p>
+      <div>
+        <p><img src="http://lorempixel.com/100/150/sports/ANUNCIO/" height="100" width="150" alt="Foto Receita"></p>
       </div>
+      <small>Links patrocinados</small>
     </div>
   </div>
 </div>

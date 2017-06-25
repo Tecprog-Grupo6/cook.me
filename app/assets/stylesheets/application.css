@@ -11,65 +11,15 @@
  * It is generally better to create a new file per style scope.
  *
  *= require_self
- *= require_tree 
+ *= require_tree
  */
-
-// Core variables and mixins
-@import "bootstrap/variables";
-@import "bootstrap/mixins";
-
-// Reset
-@import "bootstrap/normalize";
-@import "bootstrap/print";
-
-// Core CSS
-@import "bootstrap/scaffolding";
-@import "bootstrap/type";
-@import "bootstrap/code";
-@import "bootstrap/grid";
-@import "bootstrap/tables";
-@import "bootstrap/forms";
-@import "bootstrap/buttons";
-
-// Components
-@import "bootstrap/component-animations";
-@import "bootstrap/glyphicons";
-@import "bootstrap/dropdowns";
-@import "bootstrap/button-groups";
-@import "bootstrap/input-groups";
-@import "bootstrap/navs";
-@import "bootstrap/navbar";
-@import "bootstrap/breadcrumbs";
-@import "bootstrap/pagination";
-@import "bootstrap/pager";
-@import "bootstrap/labels";
-@import "bootstrap/badges";
-@import "bootstrap/jumbotron";
-@import "bootstrap/thumbnails";
-@import "bootstrap/alerts";
-@import "bootstrap/progress-bars";
-@import "bootstrap/media";
-@import "bootstrap/list-group";
-@import "bootstrap/panels";
-@import "bootstrap/wells";
-@import "bootstrap/close";
-
-// Components w/ JavaScript
-@import "bootstrap/modals";
-@import "bootstrap/tooltip";
-@import "bootstrap/popovers";
-@import "bootstrap/carousel";
-
-// Utility classes
-@import "bootstrap/utilities";
-@import "bootstrap/responsive-utilities";
 
 * {
 	margin: 0;
 }
 
 html, body {
-  background: linear-gradient(to left, #3a6186 , #89253e);
+  background: linear-gradient(to left, #DE1C4B, #DE3C4B);
   color : #000;
   height: 100%;
 }
@@ -80,7 +30,7 @@ html, body {
 
 #main {
   overflow:auto;
-  padding-bottom:150px; /* this needs to be bigger than footer height*/
+  padding-bottom:75px; /* this needs to be bigger than footer height*/
 }
 
 .footer {

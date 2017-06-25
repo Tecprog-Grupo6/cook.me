@@ -81,45 +81,19 @@
               <div class="row">
                 <div class="col-md-10 col-md-offset-1">
                   <div class="well well-sm">
-                    <div class="row">
-                      <div class="col-md-10 col-md-offset-1">
-                        <h3>Nome: <a href="/receita/visualizar/<%= recipe.id =%>"><%= recipe[:title] =%></a></h3>
+                    <a href="/receita/visualizar/<%= recipe.id =%>">
+                      <div class="row">
+                        <div class="col-md-4">
+                          <%= image_tag(recipe.image_one.url(:medium), class:"img-responsive") %>
+                        </div>
+                        <div class="col-md-8 info-content">
+                            <h5>Nome: <%= recipe.title =%></h5>
+                            <h5>Serve: <%= recipe.served_people =%> pessoas</h5>
+                            <h5>Tempo de preparo: <%= recipe.served_people =%> minutos</h5>
+                            <small>por <%= recipe.user.first_name %> <%=recipe.user.last_name %> em <%= recipe.created_at.strftime(" %d/%m/%Y às %I:%M%p") %></small>
+                        </div>
                       </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-4">
-                        <img src="http://runawayapricot.com/wp-content/uploads/2014/09/placeholder.jpg"
-                          class="img-rounded img-responsive" alt="HTML5 Icon" style="width:75%;height:75%;"/>
-                      </div>
-                      <div class="col-md-5 info-content">
-                          <br>
-                          <h4>Serve <%= recipe.served_people =%> pessoas</h4>
-                          <br>
-                          <h4>Tempo de preparo <%= recipe.served_people =%> minutos</h4>
-                          <br>
-                          <div class="row">
-                            <div class="col-md-6 col-md-offset-3">
-                              <div class="yellow">
-                                <i class="glyphicon glyphicon-star"></i>
-                                <i class="glyphicon glyphicon-star"></i>
-                                <i class="glyphicon glyphicon-star"></i>
-                                <i class="glyphicon glyphicon-star-empty"></i>
-                                <i class="glyphicon glyphicon-star-empty"></i>
-                              </div>
-                              <% if(recipe.created_at.day > 10) %>
-                                <%= recipe.created_at.day %>
-                              <% else %>
-                                0<%= recipe.created_at.day %>
-                              <% end %>/<% if(recipe.created_at.month > 10) %>
-                                <%= recipe.created_at.month %>
-                              <% else %>
-                              0<%= recipe.created_at.month %>
-                              <% end %>/<%= recipe.created_at.year %>
-                              <br>
-                            </div>
-                          </div>
-                      </div>
-                    </div>
+                    </a>
                   </div>
                 </div>
               </div>
@@ -128,7 +102,9 @@
             <h3>Pesquise por uma receita <b> ;)</b> </h3>
           <% end %>
         <% else %>
-          <h4>Nenhuma encontrada</h4>
+          <br><br><br><br>
+          <h4>Nenhuma receita encontrada!</h4>
+          <br><br><br>
         <% end %>
         <br>
   		</div>
@@ -152,22 +128,7 @@
                         <i class="glyphicon glyphicon-envelope"></i>  E-mail: <%= user.email %>
                         <br>
                         <br>
-                        <div class="yellow">
-                          <i class="glyphicon glyphicon-star"></i>
-                          <i class="glyphicon glyphicon-star"></i>
-                          <i class="glyphicon glyphicon-star"></i>
-                          <i class="glyphicon glyphicon-star-empty"></i>
-                          <i class="glyphicon glyphicon-star-empty"></i>
-                        </div>
-                        <% if(user.created_at.day > 10) %>
-                          <%= user.created_at.day %>
-                        <% else %>
-                          0<%= user.created_at.day %>
-                        <% end %>/<% if(user.created_at.month > 10) %>
-                          <%= user.created_at.month %>
-                        <% else %>
-                        0<%= user.created_at.month %>
-                        <% end %>/<%= user.created_at.year %>
+                        <small>Perfil criado em <%= user.created_at.strftime(" %d/%m/%Y às %I:%M%p") %></small>
                         <br>
                       </div>
                     </div>
@@ -180,7 +141,9 @@
             <h3>Pesquise por um usuário <b> ;)</b> </h3>
           <% end %>
         <% else %>
-          <h4>Nenhum usuário encontrado</h4>
+          <br><br><br><br>
+          <h4>Nenhum usuário encontrado!</h4>
+          <br><br><br>
         <% end %>
         <br>
   		</div>
