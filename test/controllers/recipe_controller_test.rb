@@ -85,11 +85,27 @@ class RecipeControllerTest < ActionDispatch::IntegrationTest
     assert_nil(User.find_by(:email => 'johndoe@email.com').recipes.find_by(:title => 'Best recipe'), "Recipe was created")
   end
 
-  test "should show a recipe" do
+  test "should show a recipe as owner" do
     post "/perfil/criar", :params => { :user =>  @user_1 }
     post "/receita", :params => { :recipes => @recipe_1 }
     get "/receita/visualizar/#{User.find_by(:email => 'johndoe@email.com').recipes.find_by(:title => 'Best recipe').id}"
 
+    assert_select 'form input' do |btn|
+      assert(btn.count > 0)
+    end
+
+    #assert_select "form", "Deletar receita", "This page must contain a input that say 'Deletar receita' "
+    assert_select("h3", User.find_by(:email => 'johndoe@email.com').recipes.find_by(:title => 'Best recipe').title, "Recipe wasn't shown")
+  end
+
+
+  test "should show a recipe not as owner" do
+    post "/perfil/criar", :params => { :user =>  @user_1 }
+    post "/receita", :params => { :recipes => @recipe_1 }
+    get "/logout"
+    get "/receita/visualizar/#{User.find_by(:email => 'johndoe@email.com').recipes.find_by(:title => 'Best recipe').id}"
+
+    assert_select "form", {count: 0, text: "Deletar receita"}, "This page must contain no inputs that say 'Deletar receita' "
     assert_select("h3", User.find_by(:email => 'johndoe@email.com').recipes.find_by(:title => 'Best recipe').title, "Recipe wasn't shown")
   end
 
