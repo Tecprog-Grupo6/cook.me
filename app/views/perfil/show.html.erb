@@ -35,6 +35,10 @@ Licensed under MIT
                 <button type="submit" class="btn btn-danger btn-sm">Deixar de Seguir</button>
               </form>
             <% end %>
+            <br>
+            <form action="/user/<%= @profile_user.username %>/chat" method="get">
+              <button type="submit" class="btn btn-success btn-sm">Abrir chat</button>
+            </form>
   				</div>
         <% else %>
           <!-- Do nothig -->

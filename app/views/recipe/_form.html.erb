@@ -1,5 +1,7 @@
 <div class="contact-section">
   <div class="container">
+    <!-- Form routes to update old recipe method when provided with an id through params[:recipe_id]
+         and routes to save new recipe method when id is nil -->
     <%= form_for :recipes, url: "/receita/#{params[:recipe_id]}" do |f| %>
       <div class="col-md-6 form-line">
           <div class="form-group">

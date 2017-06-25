@@ -11,11 +11,16 @@ Rails.application.routes.draw do
   get '/receita/editar/:recipe_id' => 'recipe#edit'
   post '/receita/' => 'recipe#save_new'
   post '/receita/:recipe_id' => 'recipe#save_old'
+  post '/receita/deletar/:recipe_id' => 'recipe#delete'
   get '/buscar' => 'search#index'
   post '/buscar' => 'search#show_results'
   get '/user/:username', to: 'perfil#show'
   post '/user/:username/followed_by/:current_user_username', to: 'perfil#follow'
   post '/user/:username/unfollowed_by/:current_user_username', to: 'perfil#unfollow'
+  get '/user/:username/chat' => 'chat_room#show'
+  post '/user/:username/chat' => 'chat_room#create'
+  post '/user/:username/chat/destroy' => 'chat_room#destroy'
+  post '/user/:username/chat/refresh' => 'chat_room#refresh'
 
   as :user do
     get '/login', to: 'users/sessions#new'

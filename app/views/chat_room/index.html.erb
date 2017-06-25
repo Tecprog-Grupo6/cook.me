@@ -1,0 +1,79 @@
+<style>
+  .pre-scrollable {
+    min-height: 440px;
+    max-height: 440px;
+    overflow-y: scroll;
+  }
+
+  .buttons_padding {
+    padding-top: 440px;
+  }
+</style>
+
+<script>
+  window.location.href = '#pe';
+</script>
+
+<div class="col-md-offset-1 col-md-10">
+
+  <div class="row text-center">
+    <h2>Chat com <%= User.find_by(:username => params[:username]).first_name %> <%= User.find_by(:username => params[:username]).last_name %></h2>
+  </div>
+
+  <div class="col-md-12 pre-scrollable">
+    <% @chat.messages.each do |message| %>
+
+        <div class="row">
+          <div class="col-md-1">
+            <a href="/user/<%= message.user.username %>">
+              <%= image_tag(message.user.avatar.url(:medium), class:"img-responsive", alt:"") %>
+            </a>
+          </div>
+          <div class="col-md-11">
+            <div class="row">
+              <strong><%= message.user.first_name %> <%= message.user.last_name %></strong>
+            </div>
+            <div class="row">
+              <%= message.body %>
+            </div>
+            <div class="row">
+              <small><%= message.created_at.strftime("Enviado %d/%m/%Y às %I:%M%p") %></small>
+            </div>
+          </div>
+        </div>
+        <br>
+
+    <% end %>
+    <div id="pe">
+      <br>
+    </div>
+  </div>
+
+  <%= form_for :messages, url: "/user/#{params[:username]}/chat" do |f| %>
+    <div class="fixed-bottom buttons_padding">
+      <div class="row">
+        <div class="col-md-6">
+          <br>
+          <%= f.text_field :message_body, :placeholder => "Mensagem", class: "form-control", required: true, autofocus: true %>
+        </div>
+        <div class="col-md-2">
+          <br>
+          <%= f.submit "Enviar mensagem", class: "btn btn-default submit" %>
+        </div>
+    <% end %>
+    <%= form_for :messages, url: "/user/#{params[:username]}/chat/refresh" do |f| %>
+        <div class="col-md-2">
+          <br>
+          <%= f.submit "Atualizar chat", class: "btn btn-default submit" %>
+        </div>
+    <% end %>
+    <%= form_for :messages, url: "/user/#{params[:username]}/chat/destroy" do |f| %>
+        <div class="col-md-2">
+          <br>
+          <%= f.submit "Apagar mensagens", class: "btn btn-default submit" %>
+        </div>
+    <% end %>
+      </div>
+    </div>
+
+</div>

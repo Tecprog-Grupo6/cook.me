@@ -16,8 +16,8 @@ SimpleCov.start do
   # Devise user model isn't being tracked by simplecov
   add_filter 'app/models/user.rb'
   # Remove these filters below after fix recipes
-  add_filter 'app/controllers/recipes_controller.rb'
-  add_filter 'app/models/recipe.rb'
+  #add_filter 'app/controllers/recipes_controller.rb'
+  #add_filter 'app/models/recipe.rb'
   # Divide coverage in groups
   add_group "Controllers", "app/controllers"
   add_group "Models", "app/models"

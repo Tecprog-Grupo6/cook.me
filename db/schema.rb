@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170603233639) do
+
+ActiveRecord::Schema.define(version: 20170611213229) do
+
+  create_table "chat_rooms", force: :cascade do |t|
+    t.integer  "user_one_id"
+    t.integer  "user_two_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
   create_table "follow_associations", force: :cascade do |t|
     t.integer  "follower_id"
@@ -20,6 +28,16 @@ ActiveRecord::Schema.define(version: 20170603233639) do
     t.index ["followed_id"], name: "index_follow_associations_on_followed_id"
     t.index ["follower_id", "followed_id"], name: "index_follow_associations_on_follower_id_and_followed_id", unique: true
     t.index ["follower_id"], name: "index_follow_associations_on_follower_id"
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.text     "body"
+    t.integer  "user_id"
+    t.integer  "chat_room_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["chat_room_id"], name: "index_messages_on_chat_room_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
   create_table "recipes", force: :cascade do |t|

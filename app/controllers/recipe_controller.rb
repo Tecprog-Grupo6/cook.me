@@ -4,23 +4,32 @@
 
 class RecipeController < ApplicationController
 
-  skip_before_action :verify_authenticity_token
+  before_action :authenticate_user!, :except => [:show]
 
+  #receives params[:recipe_id] from the url
+  #redirects to page of the recipe whose id matches param recipe_id
   def show
 
     # Searching a recipe
     @recipe_posted = Recipe.find(params[:recipe_id])
     logger.debug " Inspect a valid found recipe"
 
-    if @recipe_posted != nil
+    begin
+      @to_show_recipe = Recipe.find(params[:recipe_id])
+      if user_signed_in? && @to_show_recipe.user_id == current_user.id
+        logger.debug " [RECIPE#SHOW] Recipe with id: " + params[:recipe_id] + " belongs to current user"
+        @is_owner = true
+      else
+        @is_owner = false
+      end
       result = render template: "recipe/show.html.erb"
-      logger.debug " Inspect recipe FOUND!"
-    else
+      logger.debug " [RECIPE#SHOW] Recipe with id: " + params[:recipe_id] + " successfully found"
+    rescue ActiveRecord::RecordNotFound
       result = render template: "recipe/recipe_not_found.html.erb"
-      logger.debug " recipe NOT FOUND!"
+      logger.debug " [RECIPE#SHOW] URL param recipe_id: " + params[:recipe_id] + ", didn't match an existing recipe id"
     end
     return result
-    logger.debug " Inspect show if the recipe WAS or WASN'T found"
+
   end
 
   def new
@@ -35,7 +44,6 @@ class RecipeController < ApplicationController
                                           :prepare_time => params[:recipes][:prepare_time],
                                           :image_one => params[:recipes][:image_one])
     return save(@recipe)
-    logger.debug " Inspect RECIPE SAVED"
 
   end
 
@@ -55,8 +63,24 @@ class RecipeController < ApplicationController
     return result
   end
 
+  #receives params[:recipe_id] from the url
+  #deletes the recipe whose id matches param recipe_id
+  #redirects to current user cookbook page
   def delete
-    #[TODO]
+
+    begin
+      @to_delete_recipe = Recipe.find(params[:recipe_id])
+      @to_delete_recipe.destroy
+      if @to_delete_recipe.destroyed?
+        logger.debug " [RECIPE#DELETE] Recipe with id: " + @to_delete_recipe.id.to_s + " successfully destroyed"
+      else
+        logger.debug " [RECIPE#DELETE] Recipe with id: " + @to_delete_recipe.id.to_s + " failed to be destroyed"
+      end
+    rescue ActiveRecord::RecordNotFound
+      logger.debug " [RECIPE#DELETE] URL param recipe_id: " + params[:recipe_id] + ", didn't match an existing recipe id"
+    end
+    redirect_to "/user/#{current_user.username}"
+
   end
 
   private
