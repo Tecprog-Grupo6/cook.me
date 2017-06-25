@@ -19,6 +19,13 @@ ActiveRecord::Schema.define(version: 20170611213229) do
     t.datetime "updated_at",  null: false
   end
 
+  create_table "favorite_recipes", force: :cascade do |t|
+    t.integer  "recipe_id"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "follow_associations", force: :cascade do |t|
     t.integer  "follower_id"
     t.integer  "followed_id"
